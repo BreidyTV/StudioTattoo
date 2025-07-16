@@ -1,0 +1,28 @@
+<app-header></app-header>
+
+<div class="container">
+        <h2>R e g i s t r a r s e</h2>
+        
+        <div class="col-12 login">
+            <div class="registro">
+                <div class="form-group">
+                    <label for="nombre">Nombre completo</label>
+                    <input type="text" class="form-control" id="nombre" [(ngModel)]="nombre">
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" class="form-control" id="email" [(ngModel)]="email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraeña</label>
+                    <input type="password" class="form-control" id="password" [(ngModel)]="password">
+                </div>
+                <button type="submit" class="btn btn-primary boton" (click)="registrar()">Registrarse</button>               
+            </div>
+            
+        </div>
+</div>
+
+    <a class="btn btn-primary boton registro" routerLink="/login">I n i c i a r S e s i ó n</a>
+
+<app-footer></app-footer>

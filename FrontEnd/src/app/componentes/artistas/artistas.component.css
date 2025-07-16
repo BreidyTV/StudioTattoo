@@ -1,0 +1,110 @@
+.artistas {
+    text-align: center;
+    color: brown;
+    font-size: 30px;
+    margin-bottom: 50px;
+    transition: 0.5s ease-in-out;
+}
+
+#carousel1 {
+    width: 250px !important;
+    margin-left: calc(50% - 125px);
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+#carousel21 {
+    width: 250px !important;
+    margin-left: calc(50% - 125px);
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+#carousel22 {
+    width: 250px !important;
+    margin-left: calc(50% - 125px);
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+#carousel3 {
+    width: 250px !important;
+    margin-left: calc(50% - 125px);
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+#carousel41 {
+    width: 250px !important;
+    margin-left: calc(50% - 125px);
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+#carousel42 {
+    width: 250px !important;
+    margin-left: calc(50% - 125px);
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+h5 {
+    width: 100%;
+    color: brown;
+    font-size: 25px;
+    padding-top: 15px;
+    text-align: center;
+    font-weight: 500;
+    font-style: normal;
+    margin-top: 25px;
+    margin-bottom: 40px;
+}
+
+.media-body p {
+    color: #c6c5c5;
+    font-size: 16px;
+    margin: 5px 20px 5px 20px;
+}
+
+li {
+    margin-left: 60px;
+    padding: 0;
+    color: #c6c5c5;
+    font-size: 16px;
+    font-style: italic;
+    transition: 0.5s ease-in-out;
+    cursor: context-menu;
+}
+li:hover {
+    color: brown;
+}
+
+.lifinal {
+    margin-bottom: 40px;
+}
+
+.estilos {
+    margin: 0 0 0 70px;
+    font-style: italic;
+    color: #c6c5c5;
+    font-weight: 700;
+}
+
+.media {
+    padding-top: 30px;
+    border-top: solid 1px #c6c5c5;
+}
+
+#artista21 {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    #artista21 {
+        display: block;
+    }
+    #artista22 {
+        display: none;
+    }
+}
+

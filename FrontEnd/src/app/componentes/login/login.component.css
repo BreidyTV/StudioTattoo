@@ -1,0 +1,83 @@
+h2 {
+    text-align: center;
+    color: brown;
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+
+.login {
+    background: rgb(0, 0, 0) !important;
+    border: solid 1px #c6c5c5 !important;
+    margin-top: 30px;
+    margin-left: calc(50% - 188px);
+    padding: 20px 50px 20px 50px;
+    width: auto;
+    border-radius: 5px;
+    width: 375px;
+}
+
+label {
+    color: #c6c5c5;
+    font-size: 16px;
+}
+
+.btn {
+    background: #c6c5c5 !important;
+    color: black;
+    border: none;
+    font-weight: 500;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: calc(50% - 34px);
+    border-radius: 2px;
+    font-style: normal;
+    transition: 0.5s ease-in-out;
+}
+.btn:hover {
+    color: #c6c5c5;
+    background: brown !important;
+}
+
+.texto {
+    font-size: 14px;
+    color: #c6c5c5;
+}
+
+.form-group label{
+    color: #c6c5c5;
+    font-weight: 400;
+}
+
+.form-group {
+    margin-bottom: 30px;
+}
+
+.btn.registro {
+    background: brown !important;
+    color: #c6c5c5 !important;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    margin-left: calc(50% - 75px);
+    border-radius: 2px;
+    font-style: normal;
+    padding: 6px 12px;
+    transition: 0.5s ease-in-out;
+}
+
+.btn.registro:hover {
+    color: black !important;
+    background: #c6c5c5 !important;
+}
+
+.url{
+    font-weight: 400;
+    font-size: 14px;
+    color: #c6c5c5 !important;
+    transition: 0.5s ease-in-out;
+}
+.url:hover{
+    color: brown !important;
+}

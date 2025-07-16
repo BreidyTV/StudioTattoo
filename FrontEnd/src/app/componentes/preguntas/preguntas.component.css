@@ -1,0 +1,47 @@
+.pregunta {
+    text-align: center;
+    color: brown;
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+
+.card1 {
+    margin-top: 30px;
+    margin-bottom: 5px;
+}
+
+.card {
+    background: black;
+    margin-bottom: 5px;
+}
+
+.btn-block {
+    color: #c6c5c5;
+    box-shadow: none;
+    border: solid 1px #c6c5c5;
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background: black !important;
+}
+.btn-block:hover {
+    color: brown;
+    text-decoration: none;
+    border-color: brown;
+    font-size: 0.51em;
+    text-shadow: none;
+}
+
+.card-body {
+    color: #c6c5c5;
+    margin-top: none;
+    font-weight: 400;
+    font-size: 16px;
+    margin-bottom: 15px;
+    padding: 0px 20px;
+    padding-top: 10px;
+}
+
+.btn-link {
+    color: #c6c5c5;
+}

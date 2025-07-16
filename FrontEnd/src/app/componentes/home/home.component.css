@@ -1,0 +1,214 @@
+.container { 
+    position: relative;
+}
+
+.navbar {
+    background: black !important;
+}
+
+img.navbar-brand {
+    width: 110px;
+    height: 70PX;
+    border-radius: 50px;
+    padding: 0PX;
+}
+
+a {
+    color: #c6c5c5 !important;
+    font-size: 16px;
+    font-style: italic;
+}
+
+a:hover {
+    color: #a52a2a !important;
+}
+
+.navbar-toggler-icon {
+    background: #2a2929;
+    border-radius: 3px;
+}
+
+body {
+    background: black;
+}
+
+footer {
+    margin-top: 20px;
+    padding: 15px 25px 25px 25px;
+    background: rgb(0, 0, 0);
+    border-top: solid 1px #c6c5c5;
+}
+
+footer p {
+    color: #c6c5c5;
+    font-size: 14px;
+    padding-left: 20px;
+    margin-bottom: 0px;
+}
+footer a {
+    text-decoration: none;
+    color: #c6c5c5 !important;
+    font-size: 14px;
+    font-style: normal;
+}
+
+footer a:hover {
+    text-decoration: none;
+    color: #c6c5c5 !important;
+    font-size: 14px;
+    font-style: normal;
+}
+
+footer a, footer iframe {
+    padding-left: 20px;
+}
+
+footer h4 {
+    color: brown;
+    font-style: normal;
+    padding-left: 10px;
+    padding-top: 20px;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.mapa {
+    border-radius: 5px 5px 5px 5px;
+}
+
+#flotante {
+    position: fixed;
+    z-index: 9;
+    bottom: 15px;
+    right: 5px;
+    font-size: 40px;
+}
+
+p.derechos {
+    text-align: center;
+    margin-top: 20px;
+    font-style: normal;
+}
+
+.carousel-inner {
+    
+    margin-top: 20px;
+    margin-bottom: 80px;
+    width: 99%;
+}
+
+.descripcion {
+    margin-top: 80px;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 80px;
+    padding: 15px 50px;
+    font-style: normal;
+    color: #c6c5c5;
+    text-align: center;
+}
+
+.titulo {
+    text-align: center;
+    color: brown;
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+
+.imgcentro {
+    margin-left: calc(50% - 150px)
+}
+
+.c1 {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 15px;
+    background: url(../../../../public/c1.1.jpg);
+    transition: 0.5s ease-in-out;
+}
+.c1:hover {
+    background: url(../../../../public/c1.2.png);
+}
+
+.c2 {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 15px;
+    background: url(../../../../public/c2.1.jpg);
+    transition: 0.5s ease-in-out;
+}
+.c2:hover {
+    background: url(../../../../public/c2.2.jpg);
+}
+
+.c3 {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 15px;
+    background: url(../../../../public/c3.1.jpg);
+    transition: 0.5s ease-in-out;
+}
+.c3:hover {
+    background: url(../../../../public/c3.2.png);
+}
+
+.c4 {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 15px;
+    background: url(../../../../public/c4.1.jpg);
+    transition: 0.5s ease-in-out;
+}
+.c4:hover {
+    background: url(../../../../public/c4.2.png);
+}
+
+.c5 {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 15px;
+    background: url(../../../../public/c5.1.jpg);
+    transition: 0.5s ease-in-out;
+}
+.c5:hover {
+    background: url(../../../../public/c5.2.jpg);
+}
+
+a.btn {
+    position: relative;
+    border: 0px;
+    border-radius: 2px;
+    text-align: center;
+    background: #c6c5c5;
+    font-size: 18px;
+    font-weight: 500;
+    font-style: normal;
+    color: black !important;
+    margin-left: calc(50% - 32px);
+    margin-top: 30px;
+    margin-bottom: 80px;
+    padding: 3px 10px 3px 10px;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+}
+
+a.btn:hover {
+    background: brown;
+    color: #c6c5c5 !important;
+    font-weight: 600;
+}
+
+#mv {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    #pc {
+    display: none;
+    }
+    #mv {
+        display: block;
+    }
+}
+
+

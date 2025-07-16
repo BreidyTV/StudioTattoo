@@ -1,0 +1,25 @@
+<app-header></app-header>
+
+<div class="container">
+            <h2>P r o d u c t o s</h2>
+
+
+        <div class="row">
+            <ng-container *ngFor="let item of productos">
+                <div class="col-12 col-md-6 col-lg-4">  <!-- *ngIf="(item.cantidad != 0)" -->
+                    <div class="card mx-auto d-block" style="width: 18rem;">
+                        <img src={{item.imagen}} class="card-img-top" height="300px">
+                        <div class="card-body">
+                            <h5 class="card-title">{{item.producto}}</h5>
+                            <p class="card-text">{{item.descripcion}}</p>
+                            <a href="https://wa.me/+573012662315?text=Estoy interesado en este producto" target="_blank"><div class="btn btn-primary w-100"><i class="fas fa-shopping-cart">   ${{item.precio}} COP</i></div></a>
+                            <p class="estado" *ngIf="(item.cantidad == 0)">A g o t a d o</p>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+
+    </div>
+
+<app-footer></app-footer>

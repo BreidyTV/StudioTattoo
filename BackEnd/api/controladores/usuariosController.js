@@ -4,7 +4,6 @@ var usuariosModel = require("../modelos/usuariosModel.js").usuariosModel
 
 var usuariosController = {}
 
-var datos = []
 
 usuariosController.guardar = function(request, response){
     var post = {
@@ -154,11 +153,11 @@ usuariosController.registrar = function(request, response){
         return false
     }
     if(post.email == undefined || post.email == null || post.email.trim() == ""){
-        response.json({state:false, mensaje:"El campo email es obligatorio"})
+        response.json({state:false, mensaje:"El campo correo electrónico es obligatorio"})
         return false
     }
     if(post.password == undefined || post.password == null || post.password.trim() == ""){
-        response.json({state:false, mensaje:"El campo password es obligatorio"})
+        response.json({state:false, mensaje:"El campo contraseña es obligatorio"})
         return false
     }
 
@@ -190,9 +189,9 @@ usuariosController.registrar = function(request, response){
                         from:config.email.user, //DESDE DONDE ENVIO EL CORREO
                         to:post.email,  //USUARIO QUE SE REGISTRA
                         subject:"Verifica tu cuenta con el codigo: " + azar,
-                        html:   `<div style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; color: #333;">
-                                    <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 30px; border-radius: 8px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                                        <h2 style="color: #4a90e2; margin-bottom: 10px;">Bienvenido a <strong>${config.name}</strong></h2>
+                        html:   `<div style="font-family: Arial, sans-serif; background-color: #000000ff; padding: 20px; color: #333;">
+                                    <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 30px; border-radius: 8px; text-align: center; box-shadow: 0 2px 4px #c6c5c5);">
+                                        <h2 style="color: #a52a2a; margin-bottom: 10px;">Bienvenido a <strong>${config.name}</strong></h2>
                                         <p style="font-size: 16px;">Gracias por registrarte. Para activar tu cuenta, utiliza el siguiente código o haz clic en el botón:</p>
                                         <div style="margin: 20px 0;">
                                             <p style="font-size: 18px; font-weight: bold; margin-bottom: 5px;">Tu código de activación:</p>
@@ -200,8 +199,8 @@ usuariosController.registrar = function(request, response){
                                             <span style="color: #333;">${azar}</span>
                                             </div>
                                         </div>
-                                        <a target="_blank" href="${config.dominio}/usuarios/activar/${post.email}/${azar}"
-                                            style="display: inline-block; background-color: #4a90e2; color: #fff; text-decoration: none; padding: 12px 24px; border-radius: 5px; font-size: 16px; margin-top: 20px;">
+                                        <a target="_blank" href="${config.dominio}/activar/${post.email}/${azar}"
+                                            style="display: inline-block; background-color: #a52a2a; color: #fff; text-decoration: none; padding: 12px 24px; border-radius: 5px; font-size: 16px; margin-top: 20px;">
                                             Activar mi cuenta
                                         </a>
                                         <p style="font-size: 14px; color: #777; margin-top: 30px;">
@@ -260,6 +259,10 @@ usuariosController.login = function(request, response){
                 response.json({state:false, mensaje:"Debe activar su cuenta, verifique su correo electronico"})
             }
             else{
+                request.session.nombre = respuesta[0].nombre
+                request.session.email = respuesta[0].email
+                request.session.rol = respuesta[0].rol
+
                 response.json({state:true, mensaje:"Bienvenid@ " + respuesta[0].nombre})
             } 
         }
@@ -268,8 +271,18 @@ usuariosController.login = function(request, response){
 
 usuariosController.activar = function(request, response){
     var post = {
-        email:request.params.email,
-        codigo:request.params.codigo,
+        email:request.body.email,
+        codigo:request.body.codigo,
+    }
+
+    if(post.email == undefined || post.email == null || post.email.trim() == ""){
+        response.json({state:false, mensaje:"El campo correo electrónico es obligatorio"})
+        return false
+    }
+
+    if(post.codigo == undefined || post.codigo == null || post.codigo.trim() == ""){
+        response.json({state:false, mensaje:"El campo codigo es obligatorio"})
+        return false
     }
 
     usuariosModel.activar(post, function(respuesta){
@@ -289,7 +302,7 @@ usuariosController.solicitudRecuperarPass = function(request, response){
     }
 
     if(post.email == undefined || post.email == null || post.email.trim() == ""){
-        response.json({state:false, mensaje:"El campo email es obligatorio"})
+        response.json({state:false, mensaje:"El campo correo electrónico es obligatorio"})
         return false
     }
 
@@ -313,9 +326,9 @@ usuariosController.solicitudRecuperarPass = function(request, response){
                         from:config.email.user, //DESDE DONDE ENVIO EL CORREO
                         to:post.email,  //USUARIO QUE SE REGISTRA
                         subject:"Recupera tu contraseña con el codigo: " + azar,
-                        html:   `<div style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; color: #333;">
-                                    <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 30px; border-radius: 8px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                                        <h2 style="color: #4a90e2; margin-bottom: 10px;">Bienvenido a <strong>${config.name}</strong></h2>
+                        html:   `<div style="font-family: Arial, sans-serif; background-color: #000000ff; padding: 20px; color: #333;">
+                                    <div style="max-width: 600px; margin: 0 auto; background-color: #f0f0f0; padding: 30px; border-radius: 8px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <h2 style="color: #a52a2a; margin-bottom: 10px;">Bienvenido a <strong>${config.name}</strong></h2>
                                         <p style="font-size: 16px;">Para recuperar tu cuenta, actializa la contraseña con el siguiente código:</p>
                                         <div style="margin: 20px 0;">
                                             <div style="display: inline-block; padding: 12px 24px; background-color: #f0f0f0; border: 1px dashed #ccc; border-radius: 5px; font-size: 20px; letter-spacing: 2px;">
@@ -353,7 +366,7 @@ usuariosController.recuperarPass = function(request, response){
     }
 
     if(post.email == undefined || post.email == null || post.email.trim() == ""){
-        response.json({state:false, mensaje:"El campo email es obligatorio"})
+        response.json({state:false, mensaje:"El campo cooreo electrónico es obligatorio"})
         return false
     }
     if(post.codigoRec == undefined || post.codigoRec == null || post.codigoRec.trim() == ""){
@@ -361,7 +374,7 @@ usuariosController.recuperarPass = function(request, response){
         return false
     }
     if(post.password == undefined || post.password == null || post.password.trim() == ""){
-        response.json({state:false, mensaje:"El campo password es obligatorio"})
+        response.json({state:false, mensaje:"El campo contraseña es obligatorio"})
         return false
     }
 

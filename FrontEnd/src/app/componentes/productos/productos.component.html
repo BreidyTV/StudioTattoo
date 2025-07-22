@@ -4,8 +4,18 @@
             <h2>P r o d u c t o s</h2>
 
 
+        <div class="col-12 col-md-6 col-lg-4 search">
+            <label class="sr-only" for="criterio">Buscar Producto</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="fas fa-search" style="color: #a62b2b;"></i></div>
+                </div>
+                <input type="text" class="form-control" id="criterio" placeholder="Buscar producto" name="criterio" [(ngModel)]="criterio">
+            </div>
+        </div>
+
         <div class="row">
-            <ng-container *ngFor="let item of productos">
+            <ng-container *ngFor="let item of productos | filtro : criterio">
                 <div class="col-12 col-md-6 col-lg-4">  <!-- *ngIf="(item.cantidad != 0)" -->
                     <div class="card mx-auto d-block" style="width: 18rem;">
                         <img src={{item.imagen}} class="card-img-top" height="300px">

@@ -9,6 +9,9 @@ global.sha256 = require("sha256")
 global.nodemailer = require("nodemailer")
 const cors = require("cors")
 const { config } = require("./config.js")
+const session = require("express-session")
+const mongoStore = require("connect-mongo")
+
 
 app.use((req, res, next) => {                       //RECIBE EXTENSIONES FRONTEND
   const origin = req.headers.origin;
@@ -29,13 +32,31 @@ app.use((req, res, next) => {                       //RECIBE EXTENSIONES FRONTEN
   next();
 });
 
-require("./rutas.js")
-
 mongoose.connect("mongodb://127.0.0.1:27017/" + config.db).then((respuesta) => {      // Conectarnos a la base de datos
     console.log("Conexión correscta a MongoDB")
 }).catch((error) => {
     console.log(error)
 })
+
+app.use(session({
+    secret:config.claveSecreta,
+    resave:true,                                                  //SE REFRESCA LA SESIÓN
+    saveUninitialized:true,
+    store:mongoStore.create({
+        client:mongoose.connection.getClient(),
+        dbName: config.db,
+        collectionName:"sesiones",
+        ttl:config.expiracion                                                       //TIEMPO DE EXPIRACION
+    }),
+    cookie:{
+        maxAge:config.expiracion,                                                 //TIEMPO DE VIDA DE LA SESIÓN (UNIDAD Mili SEGUNDOS)
+        httpOnly:true
+    },
+    name:"CookieApp",
+    rolling:true
+}))
+
+require("./rutas.js")
 
 app.use(cors({                                              //DETERMINA A QUIEN LE RESPONDE
     origin: function(origin, callback){
@@ -50,31 +71,10 @@ app.use(cors({                                              //DETERMINA A QUIEN 
     }
 }))
 
-// CIFRADO DE CONTRASEÑAS
-// contraseña: aa589
-// console.log(sha256("aa589"))
-// 8bfb8fd22563f82e1f1313a41a98b0144b96ef89755ba56b7dadff88f98a8531 VALOR ENCRIPATDO
-// var x = "8bfb8fd22563f82e1f1313a41a98b0144b96ef89755ba56b7dadff88f98a8531"
-// var y = ["a","b","c"]
-//
-// for (let a = 0; a < y.length; a++) {
-//     for (let b = 0; b < y.length; b++) {
-//         for (let n = 0; n < 1000; n++) {
-//             var probar = (y[a]+y[b]+n)
-//             if(sha256(probar) == x){
-//                 console.log("-------------->")
-//                 console.log(sha256(probar))
-//                 console.log(probar)
-//             }
-//         }
-//     }   
-// }
-
 // MODELO 4
 // VISTA 1
 // CONTROLADOR 3
 // RUTAS 2
-
 
 app.listen(config.puerto, function(){  //Colocar al servidor a que arranque y escuche
     console.log("Servidor funcionando por el puerto " + config.puerto)

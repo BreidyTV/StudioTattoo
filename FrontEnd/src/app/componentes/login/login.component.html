@@ -3,18 +3,18 @@
         <h2>I n i c i a r S e s i ó n</h2>
         
         <div class="col-12 login">
-            <form>
+            <div>
                 <div class="form-group">
                     <label for="email">Correo electrónico</label>
-                    <input type="email" class="form-control" id="email">
+                    <input type="email" class="form-control" id="email" [(ngModel)]="email">
                 </div>
                 <div class="form-group">
                     <label for="password">Contraeña</label>
-                    <input type="password" class="form-control" id="telefono">
-                    <a class="url" routerLink="/recuperarPass">¿Olvidó su contraseña?</a>
+                    <input type="password" class="form-control" id="password" [(ngModel)]="password">
+                    <a class="url" routerLink="/solicitudRecuperarPass">¿Olvidó su contraseña?</a>
                 </div>
-                <button type="submit" class="btn btn-primary boton">Enviar</button>               
-            </form>
+                <button type="submit" class="btn btn-primary boton" (click)="iniciar()">Enviar</button>               
+            </div>
             
         </div>
     </div>

@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
-import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { PeticionService } from '../../servicios/peticion.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
-  imports: [HeaderComponent,FooterComponent,RouterLink,FormsModule],
+  imports: [HeaderComponent,FooterComponent,FormsModule],
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.css'
 })
 export class RegistroComponent {
 
-  constructor(public peticion: PeticionService){
+  constructor(public peticion: PeticionService, private routes : Router){
 
   }
   nombre:string = ""
@@ -46,6 +46,12 @@ export class RegistroComponent {
         icon: "success"
         });
       }
+
+      if(res.state == true){
+                this.routes.navigate(["/login"])
+              }
     })
+
+
   }
 }

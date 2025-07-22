@@ -1,0 +1,74 @@
+.menu {
+    background: rgba(76, 76, 76, 0.356);
+    width: calc(100px - 20px);
+    height: 615px;
+    top: calc(50% - 307px);
+    position: absolute;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 50px;
+}
+
+.lblnombre {
+    font-size: 30px;
+    color: brown;
+    font-weight: 500;
+    padding-top: 6.5px;
+    background: #c6c5c5;
+    text-align: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-left: calc(50% - 30px);
+    margin-top: 20px;
+    margin-bottom: 60px;
+}
+
+.item {
+    font-size: 1.7rem;
+    color: brown;
+    margin-bottom: 15px;
+    width: 80px;
+    text-align: center;
+    cursor: pointer;
+    padding-top: 3px;
+    border: none;
+    transition: 0.5s all ease-in-out;
+}
+.item:hover {
+    margin-left: 12px;
+    border: solid 1px black;
+    color: #c6c5c5;
+    background: black;
+    border-radius: 50px 0px 0px 50px;
+}
+
+.out {
+    color: brown;
+    font-size: 1.7rem;
+    margin-top: 70px;
+    margin-bottom: 10px;
+    width: 60px;
+    margin-left: 10px;
+    text-align: center;
+    cursor: pointer;
+    bottom: 20px;
+    border-radius: 30%;
+    transition: 0.5s all ease-in-out;
+}
+
+.out:hover {
+    margin-left: 10px;
+    background: black;
+    border: solid black 1px;
+    border-radius: 30px;
+    color: #c6c5c5;
+}
+
+#flotante {
+    position: fixed;
+    z-index: 9;
+    bottom: 15px;
+    right: -50px;
+    font-size: 40px;
+}

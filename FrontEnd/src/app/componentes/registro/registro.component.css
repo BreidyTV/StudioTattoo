@@ -5,11 +5,12 @@ h2 {
     margin-bottom: 50px;
 }
 
-.login {
+.reg {
     background: rgb(0, 0, 0) !important;
     border: solid 1px #c6c5c5 !important;
     margin-top: 30px;
     margin-left: calc(50% - 188px);
+    margin-bottom: 60px;
     padding: 20px 50px 20px 50px;
     width: auto;
     border-radius: 5px;
@@ -50,26 +51,6 @@ label {
 
 .form-group {
     margin-bottom: 30px;
-}
-
-.btn.registro {
-    background: brown !important;
-    color: #c6c5c5 !important;
-    border: none;
-    font-size: 1rem;
-    font-weight: 500;
-    margin-top: 50px;
-    margin-bottom: 30px;
-    margin-left: calc(50% - 84px);
-    border-radius: 2px;
-    font-style: normal;
-    padding: 6px 12px;
-    transition: 0.5s ease-in-out;
-}
-
-.btn.registro:hover {
-    color: black !important;
-    background: #c6c5c5 !important;
 }
 
 p.text{

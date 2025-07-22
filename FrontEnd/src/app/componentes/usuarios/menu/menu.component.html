@@ -1,0 +1,24 @@
+<div class="menu">
+
+    <div class="datosusuario">
+        <div class="lblnombre">{{nombre | iniciales }}</div>
+    </div>
+
+    <div class="opciones">
+        <div class="item" routerLink="/miPerfil"><i class="far fa-user-circle"></i></div>
+        <div class="item" routerLink="/misCompras"><i class="fas fa-shopping-basket"></i></div>
+        <div class="item" routerLink="/misOpiniones"><i class="far fa-comment-dots"></i></div>
+        <div class="item" routerLink="/cupones"><i class="fas fa-tags"></i></div>
+        <div class="item" routerLink="/usuarios"><i class="fas fa-users"></i></div>
+        <div class="item" routerLink="/productStore"><i class="fas fa-store"></i></div>
+    </div>
+
+    <div class="out">
+    <div class="icon" (click)="logOut()"><i class="fas fa-sign-out-alt"></i></div>
+    </div>
+
+</div>
+
+<div class="container">
+    <a id="flotante" href="https://wa.me/+573012662315?text=Estoy interesado en..." target="_blank"><i class="fab fa-whatsapp" style="color: #2aa551;width: 120px;"></i></a>
+</div>

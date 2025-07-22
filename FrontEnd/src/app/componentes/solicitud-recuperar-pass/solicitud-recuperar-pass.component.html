@@ -1,0 +1,20 @@
+<app-header></app-header>
+
+<div class="container">
+        <h2>R e c u p e r a r C o n t r a s e ñ a</h2>
+        
+        <div class="col-12 recuperar">
+            <form>
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="text" class="form-control" id="email" name="email" [(ngModel)]="email">
+                </div>
+            
+                <button type="submit" class="btn btn-primary boton recuperar" (click)="solicitudCod()">Solicitar código de recuperación contraseña</button>               
+            </form>
+            
+        </div>
+       
+</div>
+
+<app-footer></app-footer>

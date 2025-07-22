@@ -3,11 +3,12 @@ var config = {
 }
 
 config.name = "Studio Tattoo"
-config.dominio = "http://localhost:3000"
+config.dominio = "http://localhost:4200"
 
-config.db = "backend01"
+config.db = "studioTattoo"
 config.puerto = 3000
 config.claveSecreta = "sd658+xg45z5fgd5x4gxd%5fhc5g5v3cb5hcn4zd5dg46v23<c2zxf/65asf4"
+config.expiracion = 60000*5
 
 config.email.host = "smtp.gmail.com"
 config.email.port = 587

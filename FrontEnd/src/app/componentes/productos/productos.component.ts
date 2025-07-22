@@ -3,14 +3,18 @@ import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { MisProductos } from '../../interface/mis-productos';
+import { FormsModule } from '@angular/forms';
+import { FiltroPipe } from '../../pipe/filtro.pipe';
 
 @Component({
   selector: 'app-productos',
-  imports: [HeaderComponent, FooterComponent, CommonModule],
+  imports: [HeaderComponent, FooterComponent, CommonModule, FormsModule, FiltroPipe],
   templateUrl: './productos.component.html',
   styleUrl: './productos.component.css'
 })
 export class ProductosComponent {
+
+  criterio:string = ""
 
   productos:MisProductos[] = [
     { imagen:"Producto1.png",
@@ -35,14 +39,14 @@ export class ProductosComponent {
     },
 
     { imagen:"producto4.png",
-      producto:"Piercing acero quirurgico",
+      producto:"Crema anestésica para tatuajes",
       descripcion:"Contenido: 10gr. Un producto que te brindará un alivio durante el proceso de tatuaje. Este producto es ideal para aquellos que buscan una solución efectiva para reducir el dolor y la incomodidad.",
       precio:50000,
       cantidad:2
     },
 
     { imagen:"producto5.png",
-      producto:"Pigmento para tatuar",
+      producto:"Piercing acero quirurgico",
       descripcion:"Aros clicker de 8mm a 12mm. Aro Nostril. Herradura de 8mm a 10mm. Industrial. Labret de 6mm a 12mm. Banana de 8mm a 12mm. Helix de 8mm a 10mm",
       precio:30000,
       cantidad:7

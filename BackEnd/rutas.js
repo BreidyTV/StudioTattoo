@@ -1,23 +1,24 @@
 var usuariosController = require("./api/controladores/usuariosController.js").usuariosController
+var security = require("./midleware/security.js").security
 
 
-app.post("/usuarios/guardar", function(request, response){  
+app.post("/usuarios/guardar", security.soloAdmin, function(request, response){  
     usuariosController.guardar(request, response)
 })
 
-app.get("/usuarios/cargarTodas", function(request, response){  
+app.get("/usuarios/cargarTodas", security.soloAdmin, function(request, response){  
     usuariosController.cargarTodas(request, response)
 })
 
-app.get("/usuarios/cargarId/:cedula", function(request, response){  
+app.get("/usuarios/cargarId/:cedula", security.soloAdmin, function(request, response){  
     usuariosController.cargarId(request, response)
 })
 
-app.put("/usuarios/actualizar", function(request, response){  
+app.put("/usuarios/actualizar", security.soloAdmin, function(request, response){  
     usuariosController.actualizar(request, response)
 })
 
-app.delete("/usuarios/eliminar", function(request, response){  
+app.delete("/usuarios/eliminar", security.soloAdmin, function(request, response){  
     usuariosController.eliminar(request, response)
 })
 
@@ -29,7 +30,7 @@ app.post("/usuarios/login", function(request, response){
     usuariosController.login(request, response)
 })
 
-app.get("/usuarios/activar/:email/:codigo", function(request, response){  
+app.post("/usuarios/activar", function(request, response){  
     usuariosController.activar(request, response)
 })
 
@@ -39,4 +40,13 @@ app.post("/usuarios/solicitudRecuperarPass", function(request, response){
 
 app.post("/usuarios/recuperarPass", function(request, response){  
     usuariosController.recuperarPass(request, response)
+})
+
+app.post("/usuarios/estado", function(request, response){  
+    response.json(request.session)
+})
+
+app.post("/usuarios/logOut", function(request, response){
+    request.session.destroy()
+    response.json({state:true, mensaje:"Sesión cerrada"})
 })

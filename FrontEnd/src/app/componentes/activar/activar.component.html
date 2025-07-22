@@ -1,0 +1,22 @@
+<app-header></app-header>
+
+<div class="container">
+        <h2>A c t i v a r C u e n t a</h2>
+        
+        <div class="col-12 activar">
+            <div>
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" class="form-control" id="email" [(ngModel)]="email">
+                </div>
+                <div class="form-group">
+                    <label for="codigo">Código de activación</label>
+                    <input type="text" class="form-control" id="codigo" [(ngModel)]="codigo">
+                </div>
+                <button type="submit" class="btn btn-primary boton" (click)="activar()">Enviar</button>               
+            </div>
+            
+        </div>
+    </div>
+
+<app-footer></app-footer>

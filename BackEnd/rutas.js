@@ -1,3 +1,4 @@
+const session = require("express-session")
 var usuariosController = require("./api/controladores/usuariosController.js").usuariosController
 var security = require("./midleware/security.js").security
 
@@ -10,7 +11,7 @@ app.get("/usuarios/cargarTodas", security.soloAdmin, function(request, response)
     usuariosController.cargarTodas(request, response)
 })
 
-app.get("/usuarios/cargarId/:cedula", security.soloAdmin, function(request, response){  
+app.get("/usuarios/cargarId/:_id", security.soloAdmin, function(request, response){  
     usuariosController.cargarId(request, response)
 })
 
@@ -49,4 +50,16 @@ app.post("/usuarios/estado", function(request, response){
 app.post("/usuarios/logOut", function(request, response){
     request.session.destroy()
     response.json({state:true, mensaje:"Sesión cerrada"})
+})
+
+app.post("/usuarios/actualizarPass", function(request, response){  
+    usuariosController.actualizarPass(request, response)
+})
+
+app.post("/usuarios/miPerfil", function(request, response){  
+    usuariosController.miPerfil(request, response)
+})
+
+app.post("/usuarios/actualizarMiPerfil", function(request, response){  
+    usuariosController.actualizarMiPerfil(request, response)
 })

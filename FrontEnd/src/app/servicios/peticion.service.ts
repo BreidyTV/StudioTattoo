@@ -66,7 +66,7 @@ export class PeticionService {
     return promise
   }
 
-  delete(url:string,){
+  delete(url: string,payload:any){
     let promise = new Promise((resolve, reject) => {
       this.requestOptions = {
         headers: new HttpHeaders({

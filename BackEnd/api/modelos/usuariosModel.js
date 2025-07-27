@@ -2,9 +2,7 @@ const mongoose = require("mongoose")   //Base de datos
 var Schema = mongoose.Schema 
 
 var usuariosSchema = new Schema({    //Datos que voy a guardar en la base de datos - ESUQEMA
-    cedula:String,
     nombre:String,
-    apellido:String,
     email:String,
     password:String,
     estado:String,
@@ -19,6 +17,8 @@ const myModel = mongoose.model("usuarios",usuariosSchema)    // Ponerle nombre a
 var datos = []
 var usuariosModel = {}
 
+
+// USUARIO
 
 usuariosModel.registrar = function(post, callback){
     const instancia = new myModel       //En BASE DE DATOS
@@ -75,30 +75,45 @@ usuariosModel.existeEmail = function(post, callback){
     })
 }
 
+usuariosModel.actualizarPass = function(post, callback){
+    myModel.findOneAndUpdate({_id:post._id},{  //busqueda
+        password:post.password,                            //Parametros a actualizar
+    }).then((respuesta) => {
+        return callback({state:true})                   //confirmación
+    }).catch((error) => {
+        console.log(error)
+        return callback({state:false})
+    })
+}
+
+usuariosModel.actualizarMiPerfil = function(post, callback){
+    myModel.findOneAndUpdate({_id:post._id},{               //busqueda
+        nombre:post.nombre,                            //Parametros a actualizar
+    }).then((respuesta) => {
+        return callback({state:true})                   //confirmación
+    }).catch((error) => {
+        console.log(error)
+        return callback({state:false})
+    })
+}
+
+
+// ADMINISTRADOR
+
 usuariosModel.guardar = function(post, callback){
     const instancia = new myModel       //En BASE DE DATOS
-    instancia.cedula = post.cedula
     instancia.nombre = post.nombre
-    instancia.apellido = post.apellido
-    instancia.rol = "cliente"
-    instancia.estado = 'Activo'
+    instancia.email = post.email
+    instancia.password = post.password
+    instancia.rol = post.rol
+    instancia.estado = post.estado
     instancia.save().then((respuesta) => {  //respuesta del servidor (mongo)
         console.log(respuesta)
         return callback({state:true})
     }).catch((error) => {
         console.log(error)
         return callback({state:false})
-    })
-    // datos.push(post)          en POSTMAN
-    
-}
-
-usuariosModel.existeCedula = function(post, callback){
-    myModel.find({cedula:post.cedula},{}).then((respuesta) => {     //MONGODB
-    return callback(respuesta)
-    })
-    //var posicion = datos.findIndex((item) => item.cedula == post.cedula) // -1 si no la encuentra, de 0 a infinito si la encuentra POSTMAN
-    //return callback({posicion:posicion})
+    }) 
 }
 
 usuariosModel.cargarTodas = function(post, callback){
@@ -109,48 +124,37 @@ usuariosModel.cargarTodas = function(post, callback){
 }
 
 usuariosModel.cargarId = function(post, callback){
-    myModel.find({cedula:post.cedula},{__v:0,password:0}).then((respuesta) => { // __v:0 para que no se visualice ese dato
+    myModel.findById(post._id,{__v:0,password:0}).then((respuesta) => { // __v:0 para que no se visualice ese dato
         return callback({datos:respuesta})
     })
-    
-    // var posicion = datos.findIndex((item) => item.cedula == post.cedula) // -1 si no la encuentra, de 0 a infinito si la encuentra POSTMAN
-    // if(posicion == -1){
-    //     return callback({datos:[]}) 
-    // }
-    // else {
-    //     return callback({datos:[datos[posicion]]})
-    // }
-    // return callback({posicion:posicion})
+}
+
+usuariosModel.existe_id = function(post, callback){
+    myModel.find({_id:post._id},{}).then((respuesta) => {     //MONGODB
+    return callback(respuesta)
+    })
 }
 
 usuariosModel.actualizar = function(post, callback){
-    myModel.findOneAndUpdate({cedula:post.cedula},{  //busqueda
+    myModel.findOneAndUpdate({_id:post._id},{  //busqueda
         nombre:post.nombre,                            //Parametros a actualizar
-        apellido:post.apellido,
+        estado:post.estado,
+        rol:post.rol,
     }).then((respuesta) => {
         return callback({state:true})                   //confirmación
     }).catch((error) => {
         console.log(error)
         return callback({state:false})
-
     })
-
-    // datos[post.posicion].nombre = post.nombre          POSTMAN
-    // datos[post.posicion].apellido = post.apellido 
-    
 }
 
 usuariosModel.eliminar = function(post, callback){
-    myModel.findOneAndDelete({cedula:post.cedula}).then((respuesta) => {
+    myModel.findOneAndDelete({_id:post._id}).then((respuesta) => {
         return callback({state:true})
     }).catch((error) => {
         console.log(error)
         return callback({state:false})
-
     })
-    
-    //datos.splice(post.posicion,1)     POSTMAN
-    //return callback({state:true})
 }
 
 module.exports.usuariosModel = usuariosModel

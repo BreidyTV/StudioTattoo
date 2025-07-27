@@ -5,31 +5,45 @@ var usuariosModel = require("../modelos/usuariosModel.js").usuariosModel
 var usuariosController = {}
 
 
+// ADMINISTRADOR
+
 usuariosController.guardar = function(request, response){
     var post = {
-        cedula: request.body.cedula,
         nombre: request.body.nombre,
-        apellido: request.body.apellido
+        email: request.body.email,
+        password: request.body.password,
+        rol: request.body.rol,
+        estado: request.body.estado,
     }
 
-    if([undefined, null, ""].indexOf(post.cedula) >= 0){  //condición con array
-        response.json({state:false, mensaje:"El campo cedula es obligatorio."}) 
-        return false
-    }
     if(post.nombre == undefined || post.nombre == null || post.nombre == ""){
-        response.status(500).json({state:false, mensaje:"El campo nombre es obligatorio."})  //Anadir code HTTP node STATUS(500) = Internal Several Error
+        response.json({state:false, mensaje:"El campo nombre es obligatorio"})
         return false
     }
-    if(post.apellido == undefined || post.apellido == null || post.apellido == ""){
-        response.json({state:false, mensaje:"El campo apellido es obligatorio."})
+    if(post.email == undefined || post.email == null || post.email == ""){
+        response.json({state:false, mensaje:"El campo correo electrónico es obligatorio"})
+        return false
+    }
+    if(post.password == undefined || post.password == null || post.password == ""){
+        response.json({state:false, mensaje:"El campo contraseña es obligatorio"})
+        return false
+    }
+    if(post.rol == undefined || post.rol == null || post.rol == ""){
+        response.json({state:false, mensaje:"El campo rol es obligatorio"})
+        return false
+    }
+    if(post.estado == undefined || post.estado == null || post.estado == ""){
+        response.json({state:false, mensaje:"El campo estado es obligatorio"})
         return false
     }
 
-    usuariosModel.existeCedula(post,function(existe){
+    post.password = sha256(post.password + config.claveSecreta)
+
+    usuariosModel.existeEmail(post,function(existe){
         if(existe.length == 0){ //guardar
             usuariosModel.guardar(post,function(respuesta){
                 if(respuesta.state == true){
-                response.json({state:true,mensaje:"Item almacenado",data:[]})
+                response.json({state:true,mensaje:"Usuario almacenado",data:[]})
                 }
                 else{
                     response.json({state:false,mensaje:"Error al guardar",data:[]})
@@ -37,7 +51,7 @@ usuariosController.guardar = function(request, response){
             })
         }
         else {
-            response.json({state:false,mensaje:"La cedula ya existe en nuestra base de datos"})
+            response.json({state:false,mensaje:"El correo electrónico ya existe, intente con otro"})
         }
     })    
 }
@@ -53,11 +67,15 @@ usuariosController.cargarTodas = function(request, response){
 usuariosController.cargarId = function(request, response){
    //var filtro = datos.filter((item) => item.cedula == request.params.cedula)  se elimina debido a que ya se creo un modelo a partir de la existencia de la cedula
     var post = {
-        cedula: request.params.cedula,
+        _id: request.params._id,
     }
 
-    if([undefined, null, ""].indexOf(post.cedula) >= 0){  //condición con array
-        response.json({state:false, mensaje:"El campo cedula es obligatorio"}) 
+    if([undefined, null, ""].indexOf(post._id) >= 0){  //condición con array
+        response.json({state:false, mensaje:"El campo _id es obligatorio"}) 
+        return false
+    }
+    if(post._id.length != 24){
+        response.json({state:false, mensaje:"El campo Id debe ser de 24 caracteres"}) 
         return false
     }
 
@@ -68,36 +86,45 @@ usuariosController.cargarId = function(request, response){
 
 usuariosController.actualizar = function(request, response){
     var post = {
-        cedula: request.body.cedula,
+        _id: request.body._id,
         nombre: request.body.nombre,
-        apellido: request.body.apellido
+        estado: request.body.estado,
+        rol: request.body.rol,
     }
 
-    if([undefined, null, ""].indexOf(post.cedula) >= 0){  //condición con array
-        response.json({state:false, mensaje:"El campo cedula es obligatorio."}) 
+    if([undefined, null, ""].indexOf(post._id) >= 0){  //condición con array
+        response.json({state:false, mensaje:"El campo Id es obligatorio"}) 
+        return false
+    }
+    if(post._id.length != 24){
+        response.json({state:false, mensaje:"El campo Id debe ser de 24 caracteres"}) 
         return false
     }
     if(post.nombre == undefined || post.nombre == null || post.nombre == ""){
-        response.status(500).json({state:false, mensaje:"El campo nombre es obligatorio."})  //Anadir code HTTP node STATUS(500) = Internal Several Error
+        response.status(500).json({state:false, mensaje:"El campo nombre es obligatorio"})  //Anadir code HTTP node STATUS(500) = Internal Several Error
         return false
     }
-    if(post.apellido == undefined || post.apellido == null || post.apellido == ""){
-        response.json({state:false, mensaje:"El campo apellido es obligatorio."})
+    if(post.estado == undefined || post.estado == null || post.estado == ""){
+        response.json({state:false, mensaje:"El campo estado es obligatorio"})
+        return false
+    }
+    if(post.rol == undefined || post.rol == null || post.rol == ""){
+        response.json({state:false, mensaje:"El campo rol es obligatorio"})
         return false
     }
 
     // var posicion = datos.findIndex((item) => item.cedula == post.cedula) se cambia por existeCedula
 
-    usuariosModel.existeCedula(post, function(existe){
+    usuariosModel.existe_id(post, function(existe){
         if(existe.length == 0){
-        response.json({state:false, mensaje:"La cedula no existe en la base de datos."})
+        response.json({state:false, mensaje:"El id no existe en la base de datos"})
         return false
         }
         else{
             //post.posicion = existe.posicion               //sobrecarga de objetos POSTMAN
             usuariosModel.actualizar(post,function(respuesta){
                 if(respuesta.state == true){
-                    response.json({state:true, mensaje:"Item actualizado"})
+                    response.json({state:true, mensaje:"Usuario actualizado"})
                 }
             })
         }
@@ -106,40 +133,36 @@ usuariosController.actualizar = function(request, response){
 
 usuariosController.eliminar = function(request, response){
     var post = {
-        cedula: request.body.cedula,
+        _id: request.body._id,
     }
 
-    if([undefined, null, ""].indexOf(post.cedula) >= 0){  //condición con array
-        response.json({state:false, mensaje:"El campo cedula es obligatorio."}) 
+    if([undefined, null, ""].indexOf(post._id) >= 0){  //condición con array
+        response.json({state:false, mensaje:"El campo Id es obligatorio"}) 
+        return false
+    }
+    if(post._id.length != 24){
+        response.json({state:false, mensaje:"El campo Id debe ser de 24 caracteres"}) 
         return false
     }
 
-    /*var posicion = datos.findIndex((item) => item.cedula == post.cedula)
-    if(posicion == -1){
-        response.json({state:false, mensaje:"La cedula no existe en la base de datos."})
-        return false
-    }
-    else{
-        datos.splice(posicion,1)
-        response.json({state:true, mensaje:"Registro eliminado"})
-        return false
-    }*/
-
-    usuariosModel.existeCedula(post, function(existe){
+    usuariosModel.existe_id(post, function(existe){
         if(existe.length == 0){
-        response.json({state:false, mensaje:"La cedula no existe en la base de datos."})
+        response.json({state:false, mensaje:"El Id no existe en la base de datos"})
         return false
         }
         else{
             //post.posicion = existe.posicion               //sobrecarga de objetos POSTMAN
             usuariosModel.eliminar(post,function(respuesta){
                 if(respuesta.state == true){
-                    response.json({state:true, mensaje:"Se elimino el registro"})
+                    response.json({state:true, mensaje:"Usuario eliminado"})
                 }
             })
         }
     })
 }
+
+
+// USUARIO
 
 usuariosController.registrar = function(request, response){
     var post = {                                                                                            //Captura de variables
@@ -217,7 +240,7 @@ usuariosController.registrar = function(request, response){
                         }
                         else{
                             console.log(info)
-                            response.json({state:true, mensaje:"Usuario registrado correctamente, verifique su correo electronico para activar la cuenta"})
+                            response.json({state:true, mensaje:"Usuario registrado correctamente, verifica tu correo electronico para activar la cuenta"})
                         }
                     })                    
                 }
@@ -227,7 +250,7 @@ usuariosController.registrar = function(request, response){
             })
         }
         else{
-            response.json({state:false, mensaje:"El correo electronico ya esta en uso, intente con otro"})
+            response.json({state:false, mensaje:"El correo electronico ya esta en uso, intenta con otro"})
         }
     })
 
@@ -255,15 +278,25 @@ usuariosController.login = function(request, response){
             response.json({state:false, mensaje:"Credenciales invalidas"})
         }
         else{
+            if(respuesta[0].estado == 'Baneado'){
+                response.json({state:false, mensaje:"Tu cuenta ha sido desactivada"})
+                return false
+            }
             if(respuesta[0].estado == 'Inactivo'){
-                response.json({state:false, mensaje:"Debe activar su cuenta, verifique su correo electronico"})
+                response.json({state:false, mensaje:"Debes activar tu cuenta, verifica tu correo electronico"})
+                return false
+            }
+
+            if(respuesta[0].estado == 'Activo'){
+            request.session.nombre = respuesta[0].nombre
+            request.session.email = respuesta[0].email
+            request.session.rol = respuesta[0].rol
+            request.session._id = respuesta[0]._id
+
+            response.json({state:true, mensaje:"Bienvenid@ " + respuesta[0].nombre})
             }
             else{
-                request.session.nombre = respuesta[0].nombre
-                request.session.email = respuesta[0].email
-                request.session.rol = respuesta[0].rol
-
-                response.json({state:true, mensaje:"Bienvenid@ " + respuesta[0].nombre})
+                response.json({state:false, mensaje:"Tu estado de cuenta no esta definido"})
             } 
         }
     })
@@ -349,7 +382,7 @@ usuariosController.solicitudRecuperarPass = function(request, response){
                         }
                         else{
                             console.log(info)
-                            response.json({state:true, mensaje:"Codigo de recuperación de contraseña enviado exitosamente, verifique su correo electronico"})
+                            response.json({state:true, mensaje:"Codigo de recuperación de contraseña enviado, verifica tu correo electrónico"})
                         }
                     })                    
     })
@@ -386,10 +419,78 @@ usuariosController.recuperarPass = function(request, response){
             response.json({state:false, mensaje:"El email y/o el codigo de recuperación es invalido"})
         }
         else{
-            response.json({state:true, mensaje:"Su contraseña ha sido actualizada exitosamente"})
+            response.json({state:true, mensaje:"Tu contraseña se ha actualizado"})
         }
     })
 
 }
+
+usuariosController.miPerfil = function(request, response){
+    var post = {
+        _id:request.session._id
+    }
+
+    if(post._id == undefined || post._id == null || post._id == ""){
+        response.json({state:false, mensaje:"Debes iniciar session para cargar los datos"})
+        return false
+    }
+
+    usuariosModel.cargarId(post, function(respuesta){
+        response.json(respuesta)
+    })
+}
+
+usuariosController.actualizarMiPerfil = function(request, response){
+    var post = {                                                    //Capturar los datos
+        _id: request.session._id,                                //Recibe datos desde el inicio de session
+        nombre:request.body.nombre
+    }
+
+    if(post._id == undefined || post._id == null || post._id == ""){
+        response.json({state:false, mensaje:"Debes iniciar session para actualizar sus datos"})
+        return false
+    }
+    if(post.nombre == undefined || post.nombre == null || post.nombre == ""){
+        response.json({state:false, mensaje:"El campo nombre es obligatorio"})
+        return false
+    }
+
+    usuariosModel.actualizarMiPerfil(post,function(respuesta){
+        if(respuesta.state == true){
+            response.json({state:true, mensaje:"Tus datos se ha actualizado"})
+        }
+        else{
+            response.json({state:false, mensaje:"Se presento un error al actualizar los datos"})
+        }
+    })
+
+
+}
+
+usuariosController.actualizarPass = function(request, response){
+    var post = {                                                    //Capturar los datos
+        password: request.body.password,                             //recibe datos desde el FrontEnd
+        _id: request.session._id                                //Recibe datos desde el inicio de session
+    }
+
+    if(post.password == undefined || post.password == null || post.password == ""){
+        response.json({state:false, mensaje:"El campo nueva contraseña es obligatorio"})
+        return false
+    }
+    if(post._id == undefined || post._id == null || post._id == ""){
+        response.json({state:false, mensaje:"Debes iniciar session para cambiar la contraseña"})
+        return false
+    }
+
+    post.password = sha256(post.password + config.claveSecreta)
+
+    usuariosModel.actualizarPass(post,function(respuesta){
+        request.session.destroy()                                               //Al actualizar la contraseña, te saca de la sesion
+        response.json({state:true, mensaje:"Tu contraseña se ha actualizado"})
+    })
+
+
+}
+
 
 module.exports.usuariosController = usuariosController  //variable de exportación

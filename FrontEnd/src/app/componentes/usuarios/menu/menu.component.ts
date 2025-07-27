@@ -3,10 +3,11 @@ import { Router, RouterLink } from '@angular/router';
 import { PeticionService } from '../../../servicios/peticion.service';
 import Swal from 'sweetalert2';
 import { InicialesPipe } from '../../../pipe/iniciales.pipe';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-menu',
-  imports: [RouterLink, InicialesPipe],
+  imports: [RouterLink, InicialesPipe, CommonModule],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })

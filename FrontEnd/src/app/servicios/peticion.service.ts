@@ -71,10 +71,11 @@ export class PeticionService {
       this.requestOptions = {
         headers: new HttpHeaders({
           //"":""                                       CABECERAS
-        }),withCredentials:true                         //PARA PODER HACER LOGIN
+        }),withCredentials:true,
+        body:payload                         //PARA PODER HACER LOGIN
       }
 
-      this.http.delete(url,this.requestOptions).toPromise()
+      this.http.request("delete",url,this.requestOptions).toPromise()
       .then((res:any) => {
         resolve(res)
       }).catch((error:any) => {

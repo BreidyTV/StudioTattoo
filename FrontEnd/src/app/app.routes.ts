@@ -16,6 +16,8 @@ import { CuponesComponent } from './componentes/usuarios/cupones/cupones.compone
 import { UsuariosComponent } from './componentes/usuarios/usuarios/usuarios.component';
 import { ProductStoreComponent } from './componentes/usuarios/product-store/product-store.component';
 import { MiPerfilComponent } from './componentes/usuarios/mi-perfil/mi-perfil.component';
+import { DashBoardComponent } from './componentes/usuarios/dash-board/dash-board.component';
+import { DetalleProductoComponent } from './componentes/detalle-producto/detalle-producto.component';
 
 
 
@@ -37,4 +39,6 @@ export const routes: Routes = [
     {path:"usuarios",component:UsuariosComponent, pathMatch:"full"},
     {path:"productStore",component:ProductStoreComponent, pathMatch:"full"},
     {path:"miPerfil",component:MiPerfilComponent, pathMatch:"full"},
+    {path:"dashBoard",component:DashBoardComponent, pathMatch:"full"},
+    {path:"detalleProducto/:nombre/:_id",component:DetalleProductoComponent, pathMatch:"full"},
 ];

@@ -54,22 +54,21 @@ label {
 }
 
 .btn.recuperar {
-    background: #c6c5c5 !important;
-    color: black !important;
-    border: none;
-    font-size: 1rem;
+    background: brown !important;
+    color: #c6c5c5 !important;
+    border: none !important;
+    font-size: 16px;
     font-weight: 500;
     margin-left: calc(50% - 105px);
     border-radius: 2px;
     font-style: normal;
     width: 210px;
-    padding: 6px 12px;
+    padding: 3px 12px;
     transition: 0.5s ease-in-out;
 }
 
 .btn.recuperar:hover {
-    color: c6c5c5 !important;
-    background: brown !important;
+    color: #000000 !important;
 }
 
 p.text{

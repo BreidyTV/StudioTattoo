@@ -9,6 +9,7 @@
         <div class="item" routerLink="/misCompras"><i class="fas fa-shopping-basket"></i></div>
         <div class="item" routerLink="/misOpiniones"><i class="far fa-comment-dots"></i></div>
         <div class="item" routerLink="/cupones"><i class="fas fa-tags"></i></div>
+        <div class="item" routerLink="/dashBoard" *ngIf="rol == 'Administrador'"><i class="fas fa-chart-line"></i></div>
         <div class="item" routerLink="/usuarios" *ngIf="rol == 'Administrador'"><i class="fas fa-users"></i></div>
         <div class="item" routerLink="/productStore" *ngIf="rol == 'Administrador'"><i class="fas fa-store"></i></div>
     </div>

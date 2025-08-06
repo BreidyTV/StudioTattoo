@@ -28,7 +28,15 @@ a:hover {
 #login {
     position: absolute;
     z-index: 9;
-    top: 25px;
+    top: 28px;
     right: 80px;
-    font-size: 28px;
+    font-size: 25px;
+}
+
+#instagram {
+    position: absolute;
+    z-index: 9;
+    top: 28px;
+    right: 125px;
+    font-size: 25px;
 }

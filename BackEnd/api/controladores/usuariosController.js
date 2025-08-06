@@ -212,22 +212,27 @@ usuariosController.registrar = function(request, response){
                         from:config.email.user, //DESDE DONDE ENVIO EL CORREO
                         to:post.email,  //USUARIO QUE SE REGISTRA
                         subject:"Verifica tu cuenta con el codigo: " + azar,
-                        html:   `<div style="font-family: Arial, sans-serif; background-color: #000000ff; padding: 20px; color: #333;">
-                                    <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 30px; border-radius: 8px; text-align: center; box-shadow: 0 2px 4px #c6c5c5);">
-                                        <h2 style="color: #a52a2a; margin-bottom: 10px;">Bienvenido a <strong>${config.name}</strong></h2>
-                                        <p style="font-size: 16px;">Gracias por registrarte. Para activar tu cuenta, utiliza el siguiente código o haz clic en el botón:</p>
+                        html:   `<div style="font-family: Arial, sans-serif; background-color: #000000; padding: 20px; color: #333;">
+                                    <div style="max-width: 600px; margin: 0 auto; background-color: #000000; padding: 30px; border-radius: 8px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <h2 style="color: #a52a2a; margin-bottom: 10px;">Bienvenid@ a <strong>${config.name}</strong></h2>
+                                        <br>
+                                        <p style="font-size: 16px; color: #c6c5c5;">Gracias por registrarte!</p>
+                                        <br>
+                                        <p style="font-size: 16px; color: #c6c5c5;">Para activar tu cuenta utiliza el siguiente código de activación o haz clic en el botón:</p>
                                         <div style="margin: 20px 0;">
-                                            <p style="font-size: 18px; font-weight: bold; margin-bottom: 5px;">Tu código de activación:</p>
-                                            <div style="display: inline-block; padding: 12px 24px; background-color: #f0f0f0; border: 1px dashed #ccc; border-radius: 5px; font-size: 20px; letter-spacing: 2px;">
-                                            <span style="color: #333;">${azar}</span>
+                                            <div style="display: inline-block; padding: 12px 24px; background-color: #c6c5c5; border: 1px dashed #ccc; border-radius: 5px; font-size: 20px; letter-spacing: 2px;">
+                                            <span style="color: #a52a2a;">${azar}</span>
                                             </div>
                                         </div>
-                                        <a target="_blank" href="${config.dominio}/activar/${post.email}/${azar}"
-                                            style="display: inline-block; background-color: #a52a2a; color: #fff; text-decoration: none; padding: 12px 24px; border-radius: 5px; font-size: 16px; margin-top: 20px;">
+                                        <div style="margin: 0px 0px 20px 0px;">
+                                            <a target="_blank" href="${config.dominio}/activar/${post.email}/${azar}"
+                                            style="display: inline-block; background-color: #a52a2a; color: #c6c5c5; text-decoration: none; padding: 12px 24px; border-radius: 5px; font-size: 16px; margin-top: 20px;">
                                             Activar mi cuenta
-                                        </a>
-                                        <p style="font-size: 14px; color: #777; margin-top: 30px;">
-                                            Si no solicitaste esta cuenta, puedes ignorar este mensaje.
+                                            </a>
+                                        </div>
+                                        <br>
+                                        <p style="font-size: 14px; color: #c6c5c5; margin-top: 30px;">
+                                            Si no realizaste ninguna solicitud, ignora este mensaje.
                                         </p>
                                     </div>
                                 </div>`
@@ -359,17 +364,19 @@ usuariosController.solicitudRecuperarPass = function(request, response){
                         from:config.email.user, //DESDE DONDE ENVIO EL CORREO
                         to:post.email,  //USUARIO QUE SE REGISTRA
                         subject:"Recupera tu contraseña con el codigo: " + azar,
-                        html:   `<div style="font-family: Arial, sans-serif; background-color: #000000ff; padding: 20px; color: #333;">
-                                    <div style="max-width: 600px; margin: 0 auto; background-color: #f0f0f0; padding: 30px; border-radius: 8px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                                        <h2 style="color: #a52a2a; margin-bottom: 10px;">Bienvenido a <strong>${config.name}</strong></h2>
-                                        <p style="font-size: 16px;">Para recuperar tu cuenta, actializa la contraseña con el siguiente código:</p>
+                        html:   `<div style="font-family: Arial, sans-serif; background-color: #000000; padding: 20px; color: #333;">
+                                    <div style="max-width: 600px; margin: 0 auto; background-color: #000000; padding: 30px; border-radius: 8px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <h2 style="color: #a52a2a; margin-bottom: 10px;">Bienvenid@ a <strong>${config.name}</strong></h2>
+                                        <br>
+                                        <p style="font-size: 16px; color: #c6c5c5;">Para recuperar tu cuenta, actualizar la contraseña con el siguiente código:</p>
                                         <div style="margin: 20px 0;">
-                                            <div style="display: inline-block; padding: 12px 24px; background-color: #f0f0f0; border: 1px dashed #ccc; border-radius: 5px; font-size: 20px; letter-spacing: 2px;">
-                                            <span style="color: #333;">${azar}</span>
+                                            <div style="display: inline-block; padding: 12px 24px; background-color: #c6c5c5; border: 1px dashed #ccc; border-radius: 5px; font-size: 20px; letter-spacing: 2px;">
+                                            <span style="color: #a52a2a;">${azar}</span>
                                             </div>
                                         </div>
-                                        <p style="font-size: 14px; color: #777; margin-top: 30px;">
-                                            Si no solicitaste esta cuenta, puedes ignorar este mensaje.
+                                        <br>
+                                        <p style="font-size: 14px; color: #c6c5c5; margin-top: 30px;">
+                                            Si no realizaste ninguna solicitud, ignora este mensaje.
                                         </p>
                                     </div>
                                 </div>`

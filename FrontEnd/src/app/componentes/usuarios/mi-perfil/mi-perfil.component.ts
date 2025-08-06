@@ -19,7 +19,8 @@ export class MiPerfilComponent implements OnInit{
   rol:string = ""
   estado:string = ""
   password:string = ""
-
+  datos:any = {nombre:"", email:"", rol:"", estado:""} 
+  
   constructor(private peticion:PeticionService){}
   
   ngOnInit(): void {
@@ -36,6 +37,7 @@ export class MiPerfilComponent implements OnInit{
   
       this.peticion.post(post.host + post.path,post.payload).then((res:any) => {
         console.log(res)
+        this.datos=res.datos
         this.nombre = res.datos.nombre
         this.email = res.datos.email
         this.rol = res.datos.rol

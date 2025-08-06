@@ -99,7 +99,7 @@ p.derechos {
 
 .descripcion {
     margin-top: 80px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
     margin-bottom: 80px;
     padding: 15px 50px;
@@ -179,22 +179,21 @@ a.btn {
     border: 0px;
     border-radius: 2px;
     text-align: center;
-    background: #c6c5c5;
-    font-size: 18px;
+    background: brown;
+    font-size: 16px;
     font-weight: 500;
     font-style: normal;
-    color: black !important;
-    margin-left: calc(50% - 32px);
+    color: #c6c5c5 !important;
+    margin-left: calc(50% - 50.3px);
     margin-top: 30px;
     margin-bottom: 80px;
-    padding: 3px 10px 3px 10px;
+    padding: 3px 12px 3px 12px;
     cursor: pointer;
     transition: 0.5s ease-in-out;
 }
 
 a.btn:hover {
-    background: brown;
-    color: #c6c5c5 !important;
+    color: black !important;
     font-weight: 600;
 }
 

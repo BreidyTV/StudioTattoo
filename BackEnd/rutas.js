@@ -3,6 +3,9 @@ var usuariosController = require("./api/controladores/usuariosController.js").us
 var security = require("./midleware/security.js").security
 
 
+//USUARIOS
+var usuariosController = require("./api/controladores/usuariosController.js").usuariosController
+
 app.post("/usuarios/guardar", security.soloAdmin, function(request, response){  
     usuariosController.guardar(request, response)
 })
@@ -62,4 +65,39 @@ app.post("/usuarios/miPerfil", function(request, response){
 
 app.post("/usuarios/actualizarMiPerfil", function(request, response){  
     usuariosController.actualizarMiPerfil(request, response)
+})
+
+
+//PRODUCTOS
+var productosController = require("./api/controladores/productosController.js").productosController
+
+app.post("/productos/guardar", security.soloAdmin, function(request, response){  
+    productosController.guardar(request, response)
+})
+
+app.get("/productos/cargarTodas", security.soloAdmin, function(request, response){  
+    productosController.cargarTodas(request, response)
+})
+
+app.get("/productos/cargarId/:_id", function(request, response){  
+    productosController.cargarId(request, response)
+})
+
+app.put("/productos/actualizar", security.soloAdmin, function(request, response){  
+    productosController.actualizar(request, response)
+})
+
+app.delete("/productos/eliminar", security.soloAdmin, function(request, response){  
+    productosController.eliminar(request, response)
+})
+
+app.get("/productos/cargarTodasCliente", function(request, response){  
+    productosController.cargarTodasCliente(request, response)
+})
+
+
+//ANEXOS
+var anexosController = require("./api/controladores/anexosController.js").anexosController
+app.post("/anexos/anexosProductos", security.soloAdmin, function(request, response){  
+    anexosController.anexosProductos(request, response)
 })

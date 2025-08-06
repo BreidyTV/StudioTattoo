@@ -66,6 +66,33 @@ export class UsuariosComponent implements OnInit {
     })
   }
 
+  guardar(){
+      var post = {
+      host:this.peticion.urlReal,
+      path:"/usuarios/guardar",
+      payload:{
+        nombre:this.nombre,
+        email:this.email,
+        password:this.password,
+        rol:this.rol,
+        estado:this.estado,
+      }
+    }
+
+    this.peticion.post(post.host + post.path, post.payload).then((res:any) => {
+      
+      Swal.fire({
+      title: res.state == true? 'Que bien':'Ouch!',
+      text: res.mensaje,
+      icon: res.state == true? 'success':'error'
+      });
+      if(res.state == true){
+      $('#exampleModal').modal('hide')
+      this.cargarTodas()
+      }
+    })
+  }
+
   cargarId(identificador:string){
     console.log(identificador)
     this.idSeleccionado = identificador
@@ -112,33 +139,6 @@ export class UsuariosComponent implements OnInit {
     })
   }
 
-  guardar(){
-      var post = {
-      host:this.peticion.urlReal,
-      path:"/usuarios/guardar",
-      payload:{
-        nombre:this.nombre,
-        email:this.email,
-        password:this.password,
-        rol:this.rol,
-        estado:this.estado,
-      }
-    }
-
-    this.peticion.post(post.host + post.path, post.payload).then((res:any) => {
-      
-      Swal.fire({
-      title: res.state == true? 'Que bien':'Ouch!',
-      text: res.mensaje,
-      icon: res.state == true? 'success':'error'
-      });
-      if(res.state == true){
-      $('#exampleModal').modal('hide')
-      this.cargarTodas()
-      }
-    })
-  }
-
   eliminar(){
     var post = {
       host:this.peticion.urlReal,
@@ -147,7 +147,7 @@ export class UsuariosComponent implements OnInit {
         _id:this.idSeleccionado,
       }
     }
-
+    console.log(post)
     this.peticion.delete(post.host + post.path, post.payload).then((res:any) => {
       Swal.fire({
       title: res.state == true? 'Que bien':'Ouch!',

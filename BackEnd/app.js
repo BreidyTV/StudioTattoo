@@ -11,6 +11,9 @@ const cors = require("cors")
 const { config } = require("./config.js")
 const session = require("express-session")
 const mongoStore = require("connect-mongo")
+global.path = require("path") //Libreria de anexos
+global.appRoot = path.resolve(__dirname)
+global.multer = require("multer")
 
 
 app.use((req, res, next) => {                       //RECIBE EXTENSIONES FRONTEND
@@ -33,7 +36,7 @@ app.use((req, res, next) => {                       //RECIBE EXTENSIONES FRONTEN
 });
 
 mongoose.connect("mongodb://127.0.0.1:27017/" + config.db).then((respuesta) => {      // Conectarnos a la base de datos
-    console.log("Conexión correscta a MongoDB")
+    console.log("Conexión correcta a MongoDB")
 }).catch((error) => {
     console.log(error)
 })
@@ -75,6 +78,8 @@ app.use(cors({                                              //DETERMINA A QUIEN 
 // VISTA 1
 // CONTROLADOR 3
 // RUTAS 2
+
+app.use("/assets", express.static(__dirname + '/assets'))                               //EXPOSICIÓN/ECPORTACIÓN DE UNA CARPETA
 
 app.listen(config.puerto, function(){  //Colocar al servidor a que arranque y escuche
     console.log("Servidor funcionando por el puerto " + config.puerto)

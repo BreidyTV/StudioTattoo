@@ -7,7 +7,7 @@ h2 {
 
 p {
     margin: 0px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
     padding: 0px;
     font-style: normal;
@@ -35,20 +35,20 @@ label {
 }
 
 .btn {
-    background: #c6c5c5 !important;
-    color: black;
+    background: brown !important;
+    color: #c6c5c5;
     border: none;
     font-weight: 500;
+    padding: 3px 12px;
     margin-top: 20px;
     margin-bottom: 0px;
-    margin-left: calc(50% - 34px);
+    margin-left: calc(50% - 45px);
     border-radius: 2px;
     font-style: normal;
     transition: 0.5s ease-in-out;
 }
 .btn:hover {
-    color: #c6c5c5;
-    background: brown !important;
+    color: black;
 }
 
 .texto {

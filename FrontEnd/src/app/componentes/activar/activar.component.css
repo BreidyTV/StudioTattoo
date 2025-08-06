@@ -22,20 +22,20 @@ label {
 }
 
 .btn {
-    background: #c6c5c5 !important;
-    color: #000000;
+    background: brown !important;
+    color: #c6c5c5;
     border: none;
+    padding: 3px 12px;
     font-weight: 500;
     margin-top: 0px;
     margin-bottom: 0px;
-    margin-left: calc(50% - 34px);
+    margin-left: calc(50% - 45.1px);
     border-radius: 2px;
     font-style: normal;
     transition: 0.5s ease-in-out;
 }
 .btn:hover {
-    color: #c6c5c5;
-    background: brown !important;
+    color: #000000;
 }
 
 .texto {

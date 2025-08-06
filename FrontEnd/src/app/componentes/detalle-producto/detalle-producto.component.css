@@ -1,0 +1,83 @@
+h2 {
+    text-align: center;
+    color: rgb(165, 42, 42);
+    font-size: 30px;
+    font-style: normal;
+    margin-bottom: 50px;
+}
+
+.lblnombre {
+    padding: 0px;
+    text-align: left;
+    margin-bottom: 0;
+    color: brown;
+    font-size: 20px;  
+}
+
+.lblcodigo {
+    color: #c6c5c5;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.lbldescripcion, .lblunidades {
+    color: #c6c5c5;
+    font-size: 16px;
+    font-style: normal;
+    margin-bottom: 20px;
+}
+
+.lblprecio {
+    margin-bottom: 0;
+    color: brown;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+img {
+    width: 300px;
+    height: 300px;
+    margin-top: 20px;
+    border-radius: 0px;
+    margin-bottom: 20px;
+    margin-left: calc(50% - 150px);
+}
+
+.btn {
+    background: brown !important;
+    color: #c6c5c5;
+    border: none;
+    font-weight: 500;
+    padding: 3px 12px;
+    margin-top: 0px;
+    margin-bottom: 30px;
+    margin-left: 0px;
+    border-radius: 2px;
+    font-style: normal;
+    transition: 0.5s ease-in-out;
+}
+.btn:hover {
+    color: #000000;
+}
+
+.btnreturn {
+    background: #c6c5c5 !important;
+    color: brown;
+    border: none;
+    font-weight: 500;
+    padding: 3px 12px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    margin-left: calc(50% - 67.5px);
+    border-radius: 2px;
+    font-style: normal;
+    transition: 0.5s ease-in-out;
+}
+.btnreturn:hover {
+    background: brown !important;
+    color: #C6C5C5;
+    text-decoration: none;
+}

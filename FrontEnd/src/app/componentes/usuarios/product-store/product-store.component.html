@@ -2,4 +2,95 @@
 
 <div class="areadetrabajo">
     <div class="tituloarea">P r o d u c t o s</div>
+
+    <div class="container">
+        <table class="table table-dark table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">I m a g e n</th>
+                    <th scope="col">C ó d i g o</th>
+                    <th scope="col">N o m b r e</th>
+                    <th scope="col">C a n t i d a d</th>
+                    <th scope="col">P r e c i o</th>
+                    <th scope="col">E s t a d o</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let item of datos">
+                    <tr (click)="cargarId(item._id)">
+                        <td><img src="{{item.imagen}}" class="miImagen"></td>
+                        <td>{{item.codigo}}</td>
+                        <td>{{item.nombre}}</td>
+                        <td>{{item.cantidad | number}}</td>
+                        <td>{{item.precio | currency:'':'symbol':'1.0-0'}}</td>
+                        <td>{{item.estado}}</td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+    </div>
+    <div class="btnNuevo" (click)="nuevo()">
+        <i class="fas fa-plus"></i>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">P r o d u c t o</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                        
+                        <div class="form-group col-12">
+                            <label for="imagen">Imagen</label>
+                            <input type="file" class="form-control-file" id="imagen" [(ngModel)]="imagen">
+                        </div>
+
+                        <div class="form-group col-12">
+                            <label for="codigo">Código</label>
+                            <input type="text" class="form-control" id="codigo" [(ngModel)]="codigo" [disabled]="idSeleccionado != ''">
+                        </div>
+
+                        <div class="form-group col-12">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" [(ngModel)]="nombre">
+                        </div>
+
+                        <div class="form-group col-12">
+                            <label for="cantidad">Cantidad</label>
+                            <input type="number" class="form-control" id="cantidad" [(ngModel)]="cantidad">
+                        </div>
+
+                        <div class="form-group col-12">
+                            <label for="precio">Precio</label>
+                            <input type="number" class="form-control" id="precio" [(ngModel)]="precio">
+                        </div>
+
+                        <div class="form-group col-12 col-md-6">
+                            <label for="estado">Estado</label>
+                            <select class="form-control" id="estado" [(ngModel)]="estado">
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-12">
+                            <label for="descripcion">Descripcion</label>
+                            <textarea class="form-control" id="descripcion" rows="3"  [(ngModel)]="descripcion"></textarea>
+                        </div>
+                    
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn n1 btn-primary" (click)="guardar()" *ngIf="idSeleccionado == ''">G u a r d a r</button>
+                        <button type="button" class="btn n2 btn-primary" (click)="actualizar()" *ngIf="idSeleccionado != ''">A c t u a l i z a r</button>
+                        <button type="button" class="btn n3 btn-danger" (click)="eliminar()" *ngIf="idSeleccionado != ''">E l i m i n a r</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 </div>

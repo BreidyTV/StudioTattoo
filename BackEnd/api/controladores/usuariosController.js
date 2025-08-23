@@ -1,6 +1,7 @@
 const { config } = require("../../config.js")
 
 var usuariosModel = require("../modelos/usuariosModel.js").usuariosModel
+var logSesionesModel = require("../modelos/logSesionesModel.js").logSesionesModel
 
 var usuariosController = {}
 
@@ -11,6 +12,7 @@ usuariosController.guardar = function(request, response){
     var post = {
         nombre: request.body.nombre,
         email: request.body.email,
+        fechaNacimiento: request.body.fechaNacimiento,
         password: request.body.password,
         rol: request.body.rol,
         estado: request.body.estado,
@@ -22,6 +24,10 @@ usuariosController.guardar = function(request, response){
     }
     if(post.email == undefined || post.email == null || post.email == ""){
         response.json({state:false, mensaje:"El campo correo electrónico es obligatorio"})
+        return false
+    }
+    if(post.fechaNacimiento == undefined || post.fechaNacimiento == null || post.fechaNacimiento == ""){
+        response.json({state:false, mensaje:"El campo fecha de nacimiento es obligatorio"})
         return false
     }
     if(post.password == undefined || post.password == null || post.password == ""){
@@ -88,6 +94,7 @@ usuariosController.actualizar = function(request, response){
     var post = {
         _id: request.body._id,
         nombre: request.body.nombre,
+        fechaNacimiento: request.body.fechaNacimiento,
         estado: request.body.estado,
         rol: request.body.rol,
     }
@@ -102,6 +109,10 @@ usuariosController.actualizar = function(request, response){
     }
     if(post.nombre == undefined || post.nombre == null || post.nombre == ""){
         response.status(500).json({state:false, mensaje:"El campo nombre es obligatorio"})  //Anadir code HTTP node STATUS(500) = Internal Several Error
+        return false
+    }
+    if(post.fechaNacimiento == undefined || post.fechaNacimiento == null || post.fechaNacimiento == ""){
+        response.json({state:false, mensaje:"El campo fecha de nacimiento es obligatorio"})
         return false
     }
     if(post.estado == undefined || post.estado == null || post.estado == ""){
@@ -158,6 +169,12 @@ usuariosController.eliminar = function(request, response){
                 }
             })
         }
+    })
+}
+
+usuariosController.sesionesActivas = function(request, response){
+    logSesionesModel.sesionesActivas(null, function(respuesta){
+        response.json(respuesta)
     })
 }
 
@@ -293,12 +310,24 @@ usuariosController.login = function(request, response){
             }
 
             if(respuesta[0].estado == 'Activo'){
-            request.session.nombre = respuesta[0].nombre
-            request.session.email = respuesta[0].email
-            request.session.rol = respuesta[0].rol
-            request.session._id = respuesta[0]._id
+                request.session.nombre = respuesta[0].nombre
+                request.session.email = respuesta[0].email
+                request.session.rol = respuesta[0].rol
+                request.session._id = respuesta[0]._id
 
-            response.json({state:true, mensaje:"Bienvenid@ " + respuesta[0].nombre})
+                logSesionesModel.buscar(post, function(existe){
+                    if(existe.length == 0){
+                        logSesionesModel.guardar(post, function(res){
+                            response.json({state:true, mensaje:"Bienvenid@ " + respuesta[0].nombre})
+                        })
+                    }
+                    else{
+                        logSesionesModel.IncrementSesion(post, function(resultado){
+                        console.log(resultado)
+                        response.json({state:true, mensaje:"Bienvenid@ " + respuesta[0].nombre})
+                        })
+                    }
+                })   
             }
             else{
                 response.json({state:false, mensaje:"Tu estado de cuenta no esta definido"})
@@ -450,7 +479,8 @@ usuariosController.miPerfil = function(request, response){
 usuariosController.actualizarMiPerfil = function(request, response){
     var post = {                                                    //Capturar los datos
         _id: request.session._id,                                //Recibe datos desde el inicio de session
-        nombre:request.body.nombre
+        nombre:request.body.nombre,
+        fechaNacimiento:request.body.fechaNacimiento
     }
 
     if(post._id == undefined || post._id == null || post._id == ""){
@@ -459,6 +489,10 @@ usuariosController.actualizarMiPerfil = function(request, response){
     }
     if(post.nombre == undefined || post.nombre == null || post.nombre == ""){
         response.json({state:false, mensaje:"El campo nombre es obligatorio"})
+        return false
+    }
+    if(post.fechaNacimiento == undefined || post.fechaNacimiento == null || post.fechaNacimiento == ""){
+        response.json({state:false, mensaje:"El campo fecha de nacimiento es obligatorio"})
         return false
     }
 

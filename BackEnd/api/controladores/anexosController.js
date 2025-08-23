@@ -1,4 +1,4 @@
-var multer = require("multer")
+//var multer = require("multer")
 
 var anexosController = {}
 
@@ -7,7 +7,7 @@ anexosController.anexosProductos = function(request, response){
 
     var nombre = request.params.nombre
 
-    console.log(request.body)
+    console.log(request)
 
     var upload = multer({
         storage: multer.diskStorage({
@@ -18,12 +18,12 @@ anexosController.anexosProductos = function(request, response){
                 cb(null,nombre + '.png')
             }
         }), 
-        fileFilter:(req, file,cb) => {                            //filtrar por tipo de archivos
+        fileFilter:(req, file, cb) => {                            //filtrar por tipo de archivos
             var ext = path.extname(file.originalname)            //Extraer la estención del archivo
             var extensiones = ['.png', '.jpg', 'tif', '.jpeg', 'jfif'] //con inderxOf si no esta en la lista devuelve -1
 
             if(extensiones.indexOf(ext) == -1){
-                cb('Solo aceptamos formatos de imagen' + '[' + extensiones.joint("],[") + ']', null)
+                cb('Solo aceptamos formatos de imagen' + '[' + extensiones.join("],[") + ']', null)
             }
             //if(ext != '.png' && ext != '.jng' && ext != '.tif' && ext != '.jpeg' && ext != '.jfif'){
             //    cb('Solo aceptamos formatos de imagen', null)
@@ -37,7 +37,7 @@ anexosController.anexosProductos = function(request, response){
     upload(request, response, function(err){        //Subida de los datos
         if(err){
             console.log(err)
-            response.json({state:false, error:err})
+            response.json({state:false, mensaje:err})
         }
         else{
             response.json({state:true, mensaje:"Archivo cargado"})

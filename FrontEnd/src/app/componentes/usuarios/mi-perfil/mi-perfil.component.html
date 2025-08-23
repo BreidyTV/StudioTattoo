@@ -7,30 +7,36 @@
         <div class="misDatos">
             <div class="form-group row">
                 <label for="nombre" class="col-sm-6 col-form-label">N o m b r e</label>
-                <div class="col-sm-6">
+                <div class="col-sm-6 dato">
                     {{datos.nombre}}
                 </div>
             </div>
             <div class="form-group row">
+                <label for="nacimiento" class="col-sm-6 col-form-label">F e c h a D e N a c i m i e n t o</label>
+                <div class="col-sm-6 dato">
+                    {{datos.fechaNacimiento}}
+                </div>
+            </div>
+            <div class="form-group row">
                 <label for="email" class="col-sm-6 col-form-label">C o r r e o E l e c t r ó n i c o</label>
-                <div class="col-sm-6">
-                <input type="email" readonly class="form-control-plaintext" id="email" [disabled]="true" [(ngModel)]="email">
+                <div class="col-sm-6 dato">
+                    {{datos.email}}
                 </div>
             </div>
             <div class="form-group row">
                 <label for="rol" class="col-sm-6 col-form-label">R o l</label>
-                <div class="col-sm-6">
-                <input type="text" readonly class="form-control-plaintext" id="rol" [disabled]="true" [(ngModel)]="rol">
+                <div class="col-sm-6 dato">
+                    {{datos.rol}}
                 </div>
             </div>
             <div class="form-group row">
                 <label for="estado" class="col-sm-6 col-form-label">E s t a d o D e T u C u e n t a</label>
-                <div class="col-sm-6">
-                <input type="text" readonly class="form-control-plaintext" id="estado" [disabled]="true" [(ngModel)]="estado">
+                <div class="col-sm-6 dato">
+                    {{datos.estado}}
                 </div>
             </div>
                         
-            <button type="button" class="btn b1 btn-primary" (click)="actualizarNom()">A c t u a l i z a r M i N o m b r e</button>
+            <button type="button" class="btn b1 btn-primary" (click)="actualizarNom()">A c t u a l i z a r M i s D a t o s</button>
             <button type="button" class="btn b2 btn-primary" (click)="actualizarCon()">A c t u a l i z a r C o n t r a s e ñ a</button>
 
         </div>
@@ -47,10 +53,16 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                        <div class="form-group col-12">
+                        <div class="form-group1 col-12">
                             <label class="lb1" for="nombre">Nombre</label>
                             <input type="text" class="form-control" id="nombre" [(ngModel)]="nombre">
                         </div>
+
+                        <div class="form-group1 col-12">
+                            <label class="lb1" for="fecha">Fecha de nacimiento</label>
+                            <input type="text" class="form-control" id="fecha" [(ngModel)]="fechaNacimiento">
+                        </div>
+
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -64,14 +76,14 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">M i s D a t o s</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">C o n t r a s e ñ a</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                        <div class="form-group col-12">
+                        <div class="form-group1 col-12">
                             <label class="lb1" for="password">Nueva contraseña</label>
                             <input type="password" class="form-control" id="password" [(ngModel)]="password">
                         </div>

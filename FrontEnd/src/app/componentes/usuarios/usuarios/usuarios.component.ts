@@ -17,6 +17,7 @@ export class UsuariosComponent implements OnInit {
   
   datos:any[] = []
   nombre:string = ""
+  fechaNacimiento:string = ""
   email:string = ""
   password:string = ""
   rol:string = "Cliente"
@@ -31,6 +32,7 @@ export class UsuariosComponent implements OnInit {
 
   limpiar(){
     this.nombre = ""
+    this.fechaNacimiento = ""
     this.email = ""
     this.password = ""
     this.rol = "Cliente"
@@ -72,6 +74,7 @@ export class UsuariosComponent implements OnInit {
       path:"/usuarios/guardar",
       payload:{
         nombre:this.nombre,
+        fechaNacimiento:this.fechaNacimiento,
         email:this.email,
         password:this.password,
         rol:this.rol,
@@ -107,6 +110,7 @@ export class UsuariosComponent implements OnInit {
     this.peticion.get(post.host + post.path).then((res:any) => {
       console.log(res)
       this.nombre = res.datos.datos.nombre
+      this.fechaNacimiento = res.datos.datos.fechaNacimiento
       this.email = res.datos.datos.email
       this.rol = res.datos.datos.rol
       this.estado = res.datos.datos.estado
@@ -121,6 +125,7 @@ export class UsuariosComponent implements OnInit {
       payload:{
         _id:this.idSeleccionado,
         nombre:this.nombre,
+        fechaNacimiento:this.fechaNacimiento,
         rol:this.rol,
         estado:this.estado,
       }

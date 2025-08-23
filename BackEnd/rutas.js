@@ -22,6 +22,10 @@ app.put("/usuarios/actualizar", security.soloAdmin, function(request, response){
     usuariosController.actualizar(request, response)
 })
 
+app.post("/usuarios/sesionesActivas", security.soloAdmin, function(request, response){
+    usuariosController.sesionesActivas(request, response)
+})
+
 app.delete("/usuarios/eliminar", security.soloAdmin, function(request, response){  
     usuariosController.eliminar(request, response)
 })
@@ -98,6 +102,7 @@ app.get("/productos/cargarTodasCliente", function(request, response){
 
 //ANEXOS
 var anexosController = require("./api/controladores/anexosController.js").anexosController
-app.post("/anexos/anexosProductos", security.soloAdmin, function(request, response){  
+
+app.post("/anexos/anexosProductos/:nombre", security.soloAdmin, function(request, response){  
     anexosController.anexosProductos(request, response)
 })

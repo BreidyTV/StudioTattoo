@@ -23,8 +23,10 @@ export class ProductStoreComponent implements OnInit{
   descripcion:string = ""
   estado:string = "Activo"
   idSeleccionado:string = ""
+  selectedFile!:File
+  aleatorio:number = 1
 
-  constructor(private peticion:PeticionService){}
+  constructor(public peticion:PeticionService){}
 
   ngOnInit(): void {
     this.cargarTodas()
@@ -171,5 +173,43 @@ export class ProductStoreComponent implements OnInit{
           this.cargarTodas()
         }
       })
+  }
+
+    upLoadFile(){                       //carga el archivo seleccionado
+    var post = {
+      host:this.peticion.urlReal,
+      path:"/anexos/anexosProductos/" + this.idSeleccionado
+    }
+
+    this.peticion.upLoadFile(this.selectedFile,post.host + post.path).subscribe((res:any) => {      //observable .subscribe
+      console.log(res)
+
+      if(res.state == true){
+        Swal.fire({
+        title: 'Que bien',
+        text: res.mensaje,
+        icon: 'success',
+        });
+        this.random()
+        $('#exampleModal').modal('hide')
+      }
+      else {
+        Swal.fire({
+        title: 'Ouchh!',
+        text: res.mensaje,
+        icon: 'error',
+      });
+    }
+    })         
+  }
+
+  onFileSelected(event:any){          //identificar el archivo seleccionado
+    this.selectedFile = event.target.files[0]
+    this.upLoadFile()
+  }
+
+  random(){
+    this.aleatorio = Math.floor(Math.random() * (9999-1000) + 1000);
+
   }
 }

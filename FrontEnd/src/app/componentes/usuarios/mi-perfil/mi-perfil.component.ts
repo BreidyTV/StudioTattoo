@@ -16,11 +16,12 @@ export class MiPerfilComponent implements OnInit{
 
   nombre:string = ""
   email:string = ""
+  fechaNacimiento:string = ""
   rol:string = ""
   estado:string = ""
   password:string = ""
-  datos:any = {nombre:"", email:"", rol:"", estado:""} 
-  
+  datos:any = {nombre:"", email:"", fechaNacimiento:"", rol:"", estado:""} 
+
   constructor(private peticion:PeticionService){}
   
   ngOnInit(): void {
@@ -39,6 +40,7 @@ export class MiPerfilComponent implements OnInit{
         console.log(res)
         this.datos=res.datos
         this.nombre = res.datos.nombre
+        this.fechaNacimiento = res.datos.fechaNacimiento
         this.email = res.datos.email
         this.rol = res.datos.rol
         this.estado = res.datos.estado
@@ -47,6 +49,7 @@ export class MiPerfilComponent implements OnInit{
 
    limpiar(){
     this.nombre = ""
+    this.fechaNacimiento = ""
     this.password = ""
   }
 
@@ -61,7 +64,8 @@ export class MiPerfilComponent implements OnInit{
         host:this.peticion.urlReal,
         path:"/usuarios/actualizarMiPerfil",
         payload:{
-          nombre:this.nombre
+          nombre:this.nombre,
+          fechaNacimiento:this.fechaNacimiento,
         }
       }
   
@@ -99,5 +103,6 @@ export class MiPerfilComponent implements OnInit{
       }
     )}
 
-  
+
+
   }

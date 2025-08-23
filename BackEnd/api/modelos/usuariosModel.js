@@ -6,6 +6,7 @@ var usuariosSchema = new Schema({    //Datos que voy a guardar en la base de dat
     email:String,
     password:String,
     estado:String,
+    fechaNacimiento:String,
     codigoact:String,
     codigoRec:String,
     rol:String,                 //Permisos a un usuario (ej: administrador, cliente, almacenista....)
@@ -89,6 +90,7 @@ usuariosModel.actualizarPass = function(post, callback){
 usuariosModel.actualizarMiPerfil = function(post, callback){
     myModel.findOneAndUpdate({_id:post._id},{               //busqueda
         nombre:post.nombre,                            //Parametros a actualizar
+        fechaNacimiento:post.fechaNacimiento,
     }).then((respuesta) => {
         return callback({state:true})                   //confirmación
     }).catch((error) => {
@@ -104,6 +106,7 @@ usuariosModel.guardar = function(post, callback){
     const instancia = new myModel       //En BASE DE DATOS
     instancia.nombre = post.nombre
     instancia.email = post.email
+    instancia.fechaNacimiento = post.fechaNacimiento
     instancia.password = post.password
     instancia.rol = post.rol
     instancia.estado = post.estado
@@ -138,6 +141,7 @@ usuariosModel.existe_id = function(post, callback){
 usuariosModel.actualizar = function(post, callback){
     myModel.findOneAndUpdate({_id:post._id},{  //busqueda
         nombre:post.nombre,                            //Parametros a actualizar
+        fechaNacimiento:post.fechaNacimiento,
         estado:post.estado,
         rol:post.rol,
     }).then((respuesta) => {

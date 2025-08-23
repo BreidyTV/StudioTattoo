@@ -9,6 +9,7 @@
                 <tr>
                     <th scope="col">N o m b r e</th>
                     <th scope="col">C o r r e o E l e c t r ó n i c o</th>
+                    <th scope="col">F e c h a D e N a c i m i e n t o</th>
                     <th scope="col">R o l</th>
                     <th scope="col">E s t a d o</th>
                 </tr>
@@ -18,6 +19,7 @@
                     <tr (click)="cargarId(item._id)">
                         <td>{{item.nombre}}</td>
                         <td>{{item.email}}</td>
+                        <td>{{item.fechaNacimiento}}</td>
                         <td>{{item.rol}}</td>
                         <td>{{item.estado}}</td>
                     </tr>
@@ -51,6 +53,11 @@
                         <div class="form-group col-12">
                             <label for="email">Correo electrónico</label>
                             <input type="text" class="form-control" id="email" [(ngModel)]="email" [disabled]="idSeleccionado != ''">
+                        </div>
+                        
+                        <div class="form-group col-12">
+                            <label for="fechaNacimiento">Fecha de nacimiento</label>
+                            <input type="text" class="form-control" id="fechaNacimiento" [(ngModel)]="fechaNacimiento">
                         </div>
 
                         <div class="form-group col-12" *ngIf="idSeleccionado == ''">

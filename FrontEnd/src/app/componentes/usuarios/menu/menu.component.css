@@ -1,8 +1,8 @@
 .menu {
     background: rgba(76, 76, 76, 0.356);
     width: calc(100px - 20px);
-    height: 550px;
-    top: calc(50% - 275px);
+    height: 480px;
+    top: calc(50% - 240px);
     position: absolute;
     margin-left: 10px;
     margin-right: 10px;

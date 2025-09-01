@@ -99,6 +99,12 @@ usuariosModel.actualizarMiPerfil = function(post, callback){
     })
 }
 
+usuariosModel.capturarNombre = function(post, callback){                            //ACUALIZAR PIPE DE INICIALES NOMBRE
+    myModel.find({_id:post._id},{}).then((respuesta) => {
+        return callback(respuesta)
+    })
+}
+
 
 // ADMINISTRADOR
 

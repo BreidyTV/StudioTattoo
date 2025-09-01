@@ -50,8 +50,15 @@ app.post("/usuarios/recuperarPass", function(request, response){
     usuariosController.recuperarPass(request, response)
 })
 
-app.post("/usuarios/estado", function(request, response){  
-    response.json(request.session)
+var usuariosModel = require("./api/modelos/usuariosModel.js").usuariosModel             //PARA ACTIALIZAR EL PIPE DE INICIALES NOMBRE
+
+
+app.post("/usuarios/estado", function(request, response){
+    var post = {_id:request.session._id}                                        //PARA ACTIALIZAR EL PIPE DE INICIALES NOMBRE
+    usuariosModel.capturarNombre(post, function(resultado){
+        request.session.nombre = resultado[0].nombre
+        response.json(request.session)
+    })
 })
 
 app.post("/usuarios/logOut", function(request, response){
@@ -105,4 +112,12 @@ var anexosController = require("./api/controladores/anexosController.js").anexos
 
 app.post("/anexos/anexosProductos/:nombre", security.soloAdmin, function(request, response){  
     anexosController.anexosProductos(request, response)
+})
+
+
+//CONTACTENOS
+var contactenosController = require("./api/controladores/contactenosController.js").contactenosController
+
+app.post("/contactenos/enviarMensaje", function(request, response){  
+    contactenosController.enviarMensaje(request, response)
 })

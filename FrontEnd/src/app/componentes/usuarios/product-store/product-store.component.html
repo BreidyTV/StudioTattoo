@@ -18,7 +18,7 @@
             <tbody>
                 <ng-container *ngFor="let item of datos">
                     <tr (click)="cargarId(item._id)">
-                        <td><img src="{{peticion.urlReal}}/assets/{{item._id}}.png?v='{{aleatorio}}'" class="miImagen"></td>
+                        <td><img src="{{peticion.urlReal}}/assets/{{item._id}}.png?v='{{aleatorio}}'" class="miImagen" onerror="this.onerror=null; this.src='img.png';"></td>
                         <td>{{item.codigo}}</td>
                         <td>{{item.nombre}}</td>
                         <td>{{item.cantidad | number}}</td>

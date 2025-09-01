@@ -17,7 +17,7 @@ export class ProductStoreComponent implements OnInit{
   datos:any[] = []
   codigo:string = ""
   nombre:string = ""
-  imagen:string = "imagen.png"
+  imagen:string = "/img.png"
   precio:string = "0"
   cantidad:string = "0"
   descripcion:string = ""

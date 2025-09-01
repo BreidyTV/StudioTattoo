@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MenuComponent } from '../menu/menu.component';
 import { FormsModule } from '@angular/forms';
 import { PeticionService } from '../../../servicios/peticion.service';
@@ -21,11 +21,13 @@ export class MiPerfilComponent implements OnInit{
   estado:string = ""
   password:string = ""
   datos:any = {nombre:"", email:"", fechaNacimiento:"", rol:"", estado:""} 
+  @ViewChild(MenuComponent) ventanaMenu!: MenuComponent;                            //componente a variable
 
   constructor(private peticion:PeticionService){}
   
   ngOnInit(): void {
     this.cargarMisDatos()
+    //this.ventanaMenu.nombre
   }
 
   cargarMisDatos(){
@@ -77,6 +79,8 @@ export class MiPerfilComponent implements OnInit{
             icon: res.state == true? 'success':'error'
             });
         $('#actualizarMisDatos').modal('hide')
+        this.cargarMisDatos()
+        this.ventanaMenu.cargarEstado()                   //activar una función de una pagina diferente (menu)
       }
   )}
 

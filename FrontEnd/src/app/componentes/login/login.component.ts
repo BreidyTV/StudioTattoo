@@ -20,6 +20,7 @@ export class LoginComponent {
 
   email:string = ""
   password:string = ""
+  respuestaAPI:any = {}
 
   iniciar(){
     let post = {
@@ -32,7 +33,7 @@ export class LoginComponent {
     }
 
     this.peticion.post(post.host + post.path,post.payload).then((res:any) => {
-      console.log(res)
+      this.respuestaAPI = res
       if(res.state == false){
               Swal.fire({
               text: res.mensaje,

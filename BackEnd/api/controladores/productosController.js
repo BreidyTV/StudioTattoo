@@ -51,7 +51,7 @@ productosController.guardar = function(request, response){
         if(existe.length == 0){
             productosModel.guardar(post, function(respuesta){
                 if(respuesta.state == true){
-                    response.json({state:true, mensaje:"El elemento fue almacenado correctamente"})
+                    response.json({state:true, mensaje:"El producto fue almacenado correctamente"})
                 }
                 else {
                     response.json({state:false, mensaje:"Se presento un error al guardar"})
@@ -59,7 +59,7 @@ productosController.guardar = function(request, response){
             })
         }
         else {
-            response.json({state:false, mensaje:"El codigo del elemento ya existe, intente con otro"})
+            response.json({state:false, mensaje:"El codigo del producto ya existe, intente con otro"})
         }
     })
 }
@@ -159,7 +159,7 @@ productosController.eliminar = function(request, response){
     }
 
     if(post._id == undefined || post._id == null || post._id.trim() == ""){
-        response.json({state:false, mensaje:"El campo _id es obligatorio"})
+        response.json({state:false, mensaje:"El campo Id es obligatorio"})
         return false
     }
 
@@ -170,7 +170,7 @@ productosController.eliminar = function(request, response){
         else {
             productosModel.eliminar(post, function(respuesta){
                 if(respuesta.state == true){
-                    response.json({state:true, mensaje:"Se ha eliminado el elemento"})
+                    response.json({state:true, mensaje:"El producto se ha eliminado"})
                 }
                 else {
                     response.json({state:false, mensaje:"Se presento un error al eliminar el elemento"})

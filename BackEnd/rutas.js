@@ -50,17 +50,6 @@ app.post("/usuarios/recuperarPass", function(request, response){
     usuariosController.recuperarPass(request, response)
 })
 
-var usuariosModel = require("./api/modelos/usuariosModel.js").usuariosModel             //PARA ACTIALIZAR EL PIPE DE INICIALES NOMBRE
-
-
-app.post("/usuarios/estado", function(request, response){
-    var post = {_id:request.session._id}                                        //PARA ACTIALIZAR EL PIPE DE INICIALES NOMBRE
-    usuariosModel.capturarNombre(post, function(resultado){
-        request.session.nombre = resultado[0].nombre
-        response.json(request.session)
-    })
-})
-
 app.post("/usuarios/logOut", function(request, response){
     request.session.destroy()
     response.json({state:true, mensaje:"Sesión cerrada"})
@@ -76,6 +65,18 @@ app.post("/usuarios/miPerfil", function(request, response){
 
 app.post("/usuarios/actualizarMiPerfil", function(request, response){  
     usuariosController.actualizarMiPerfil(request, response)
+})
+
+
+var usuariosModel = require("./api/modelos/usuariosModel.js").usuariosModel             //PARA ACTIALIZAR EL PIPE DE INICIALES NOMBRE
+
+
+app.post("/usuarios/estado", function(request, response){
+    var post = {_id:request.session._id}                                        //PARA ACTIALIZAR EL PIPE DE INICIALES NOMBRE
+    usuariosModel.capturarNombre(post, function(resultado){      
+        request.session.nombre = resultado[0].nombre
+        response.json(request.session)
+    })
 })
 
 

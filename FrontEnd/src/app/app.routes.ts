@@ -10,7 +10,6 @@ import { RecuperarPassComponent } from './componentes/recuperar-pass/recuperar-p
 import { ActivarComponent } from './componentes/activar/activar.component';
 import { SolicitudRecuperarPassComponent } from './componentes/solicitud-recuperar-pass/solicitud-recuperar-pass.component';
 import { MenuComponent } from './componentes/usuarios/menu/menu.component';
-import { MisComprasComponent } from './componentes/usuarios/mis-compras/mis-compras.component';
 import { CuponesComponent } from './componentes/usuarios/cupones/cupones.component';
 import { UsuariosComponent } from './componentes/usuarios/usuarios/usuarios.component';
 import { ProductStoreComponent } from './componentes/usuarios/product-store/product-store.component';
@@ -32,7 +31,6 @@ export const routes: Routes = [
     {path:"activar/:email/:codigo",component:ActivarComponent, pathMatch:"full"},
     {path:"solicitudRecuperarPass",component:SolicitudRecuperarPassComponent, pathMatch:"full"},
     {path:"menu",component:MenuComponent, pathMatch:"full"},
-    {path:"misCompras",component:MisComprasComponent, pathMatch:"full"},
     {path:"cupones",component:CuponesComponent, pathMatch:"full"},
     {path:"usuarios",component:UsuariosComponent, pathMatch:"full"},
     {path:"productStore",component:ProductStoreComponent, pathMatch:"full"},

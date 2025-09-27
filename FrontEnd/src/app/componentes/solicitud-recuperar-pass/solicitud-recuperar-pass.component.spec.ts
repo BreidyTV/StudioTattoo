@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SolicitudRecuperarPassComponent } from './solicitud-recuperar-pass.component';
+import { HttpClientModule } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
+import { routes } from '../../app.routes';
 
 describe('SolicitudRecuperarPassComponent', () => {
   let component: SolicitudRecuperarPassComponent;
@@ -8,7 +11,8 @@ describe('SolicitudRecuperarPassComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SolicitudRecuperarPassComponent]
+      imports: [SolicitudRecuperarPassComponent, HttpClientModule],
+      providers:[provideRouter(routes)]
     })
     .compileComponents();
 

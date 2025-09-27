@@ -257,11 +257,11 @@ usuariosController.registrar = function(request, response){
 
                     transporter.sendMail(mailOptions, (error, info) => {                    //3. ENVIO DEL CORREO
                         if(error){
-                            console.log(error)
+                            //console.log(error)
                             response.json({state:false, mensaje:"Error, enviando el correo"})
                         }
                         else{
-                            console.log(info)
+                            //console.log(info)
                             response.json({state:true, mensaje:"Usuario registrado correctamente, verifica tu correo electronico para activar la cuenta"})
                         }
                     })                    
@@ -285,11 +285,11 @@ usuariosController.login = function(request, response){
     }
 
     if(post.email == undefined || post.email == null || post.email.trim() == ""){
-        response.json({state:false, mensaje:"El campo email es obligatorio"})
+        response.json({state:false, mensaje:"El campo correo electrónico es obligatorio"})
         return false
     }
     if(post.password == undefined || post.password == null || post.password.trim() == ""){
-        response.json({state:false, mensaje:"El campo password es obligatorio"})
+        response.json({state:false, mensaje:"El campo contraseña es obligatorio"})
         return false
     }
 
@@ -323,7 +323,7 @@ usuariosController.login = function(request, response){
                     }
                     else{
                         logSesionesModel.IncrementSesion(post, function(resultado){
-                        console.log(resultado)
+                        //console.log(resultado)
                         response.json({state:true, mensaje:"Bienvenid@ " + respuesta[0].nombre})
                         })
                     }
@@ -413,7 +413,7 @@ usuariosController.solicitudRecuperarPass = function(request, response){
 
                     transporter.sendMail(mailOptions, (error, info) => {                    //3. ENVIO DEL CORREO
                         if(error){
-                            console.log(error)
+                            //console.log(error)
                             response.json({state:false, mensaje:"Error, enviando el correo"})
                         }
                         else{

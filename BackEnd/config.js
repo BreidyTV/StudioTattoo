@@ -6,6 +6,7 @@ config.name = "Studio Tattoo"
 config.dominio = "http://localhost:4200"
 
 config.db = "studioTattoo"
+config.dbTest = "studioTattooTest"
 config.puerto = 3000
 config.claveSecreta = "sd658+xg45z5fgd5x4gxd%5fhc5g5v3cb5hcn4zd5dg46v23<c2zxf/65asf4"
 config.expiracion = 60000*30
@@ -16,7 +17,9 @@ config.email.user = "pruebasdesarrollo03@gmail.com"
 config.email.pass = "kxgoqbrmpvlqfcib"
 
 config.listablanca = [
-    "http://localhost:4200"
+    "http://localhost:4200",
+    "http://localhost:3000",
+    "http://localhost:9876"
 ]
 
 module.exports.config = config   // Exportar

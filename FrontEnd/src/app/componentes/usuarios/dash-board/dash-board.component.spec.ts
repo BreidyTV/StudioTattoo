@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DashBoardComponent } from './dash-board.component';
+import { HttpClientModule } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
+import { routes } from '../../../app.routes';
 
 describe('DashBoardComponent', () => {
   let component: DashBoardComponent;
@@ -8,7 +11,8 @@ describe('DashBoardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DashBoardComponent]
+      imports: [DashBoardComponent, HttpClientModule],
+      providers:[provideRouter(routes)]
     })
     .compileComponents();
 

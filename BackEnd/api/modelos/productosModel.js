@@ -65,7 +65,7 @@ productosModel.existeId = function(post, callback){
     myModel.find({_id:post._id},{}).then((respuesta) => {
         return callback(respuesta)
     }).catch((error) => {
-        console.log(error)
+        //console.log(error)
     })
 }
 
@@ -80,7 +80,7 @@ productosModel.actualizar = function(post, callback){
     }).then((respuesta) => {
         return callback({state:true})
     }).catch((error) => {
-        console.log(error)
+        //console.log(error)
         return callback({state:false})
     })
 }
@@ -89,10 +89,10 @@ productosModel.eliminar = function(post, callback){
     myModel.findOneAndDelete({_id:post._id}).then((respuesta) => {
         return callback({state:true})
     }).catch((error) => {
-        console.log(error)
+        //console.log(error)
         return callback({state:false})
     })
 }
 
-
+productosModel.myModel = myModel
 module.exports.productosModel = productosModel

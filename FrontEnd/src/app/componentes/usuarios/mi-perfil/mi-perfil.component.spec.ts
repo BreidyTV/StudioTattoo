@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MiPerfilComponent } from './mi-perfil.component';
+import { HttpClientModule } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
+import { routes } from '../../../app.routes';
 
 describe('MiPerfilComponent', () => {
   let component: MiPerfilComponent;
@@ -8,7 +11,8 @@ describe('MiPerfilComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MiPerfilComponent]
+      imports: [MiPerfilComponent,HttpClientModule],
+      providers:[provideRouter(routes)]
     })
     .compileComponents();
 

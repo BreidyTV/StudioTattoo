@@ -17,7 +17,7 @@ export class ProductosComponent implements OnInit{
 
   datos:any[] = []
   criterio:string = ""
-
+  
   ngOnInit(): void {
     this.cargarTodasCliente()
   }

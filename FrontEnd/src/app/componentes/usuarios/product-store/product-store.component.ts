@@ -15,6 +15,7 @@ declare var $:any
 export class ProductStoreComponent implements OnInit{
 
   datos:any[] = []
+  _id:string =""
   codigo:string = ""
   nombre:string = ""
   imagen:string = "/img.png"
@@ -25,6 +26,8 @@ export class ProductStoreComponent implements OnInit{
   idSeleccionado:string = ""
   selectedFile!:File
   aleatorio:number = 1
+  respuestaAPI:any = {}
+
 
   constructor(public peticion:PeticionService){}
 
@@ -57,6 +60,7 @@ export class ProductStoreComponent implements OnInit{
       }
   
       this.peticion.get(post.host + post.path).then((res:any) => {
+      this.respuestaAPI = res
         if(res.state == false){
           this.datos = []
           Swal.fire({
@@ -87,7 +91,7 @@ export class ProductStoreComponent implements OnInit{
       }
   
       this.peticion.post(post.host + post.path, post.payload).then((res:any) => {
-        
+        this.respuestaAPI = res
         Swal.fire({
         title: res.state == true? 'Que bien':'Ouch!',
         text: res.mensaje,
@@ -112,7 +116,7 @@ export class ProductStoreComponent implements OnInit{
         }
     
         this.peticion.get(post.host + post.path).then((res:any) => {
-          console.log(res)
+          this.respuestaAPI = res
           this.codigo = res[0].codigo
           this.nombre = res[0].nombre
           this.imagen = res[0].imagen
@@ -140,6 +144,7 @@ export class ProductStoreComponent implements OnInit{
       }
   
       this.peticion.put(post.host + post.path, post.payload).then((res:any) => {
+        this.respuestaAPI = res
         Swal.fire({
         title: res.state == true? 'Que bien':'Ouch!',
         text: res.mensaje,
@@ -163,6 +168,7 @@ export class ProductStoreComponent implements OnInit{
       }
   
       this.peticion.delete(post.host + post.path, post.payload).then((res:any) => {
+        this.respuestaAPI = res
         Swal.fire({
         title: res.state == true? 'Que bien':'Ouch!',
         text: res.mensaje,

@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductosComponent } from './productos.component';
+import { HttpClientModule } from '@angular/common/http';
+import { routes } from '../../app.routes';
+import { provideRouter } from '@angular/router';
 
 describe('ProductosComponent', () => {
   let component: ProductosComponent;
@@ -8,7 +11,8 @@ describe('ProductosComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProductosComponent]
+      imports: [ProductosComponent,HttpClientModule],
+      providers:[provideRouter(routes)]
     })
     .compileComponents();
 
@@ -20,4 +24,5 @@ describe('ProductosComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

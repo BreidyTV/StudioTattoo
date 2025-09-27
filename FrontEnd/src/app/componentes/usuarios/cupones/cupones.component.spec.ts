@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CuponesComponent } from './cupones.component';
+import { HttpClientModule } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
+import { routes } from '../../../app.routes';
 
 describe('CuponesComponent', () => {
   let component: CuponesComponent;
@@ -8,7 +11,8 @@ describe('CuponesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CuponesComponent]
+      imports: [CuponesComponent, HttpClientModule],
+      providers:[provideRouter(routes)]
     })
     .compileComponents();
 
